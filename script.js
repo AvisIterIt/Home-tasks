@@ -4,10 +4,10 @@ const arrName = ["Артем", "Павел", "Кирилл"];
 const arrNumber = [1, 2, 3, 4, 5];
 const arrNumberTo = [10, 20, 30, 40, 50];
 const people = [
-    { name: "Артем", age: 15, money: 1000 },
+    { name: "Артем", age: 15, money: 3000 },
     { name: "Александр", age: 19, money: 2000 },
     { name: "Кирилл", age: 20, money: 1500 },
-    { name: "Илья", age: 12, money: 3000 },
+    { name: "Илья", age: 12, money: 1000 },
 ];
 const countries = [
     "Россия",
@@ -51,74 +51,129 @@ const reverseButton = reverseElement.querySelector(".button");
 // forEach
 // Применяет функцию к каждому элементу массива
 function forEach() {
-    arrName.forEach((elem, id, arr) => {
-        alert(`Привет ${elem}! Ваш талон ${id}. Список людей: ${arr}`);
-    });
+    // arrName.forEach((elem, id, arr) => {
+    //     console.log(`Привет ${elem}! Ваш талон ${id}. Список людей: ${arr}`)
+    // })
+    for (let i = 0; i < arrName.length; i++) {
+        console.log(`Привет ${arrName[i]}! Ваш талон ${i}. Список людей: ${arrName}`);
+    }
 }
 // map
 // Принимает фун-ю возвращает новый массив
 function map() {
-    arrNumber.map((elem, id, arr) => {
-        alert(`${elem} * 2 = ${elem * 2}`);
-    });
+    //   arrNumber.map((elem, id, arr) => {
+    //     console.log(`${elem} * 2 = ${elem * 2}`);
+    //   });
+    let newArrNumber = [];
+    for (let i = 0; i < arrNumber.length; i++) {
+        newArrNumber.push(arrNumber[i]);
+        console.log(`${newArrNumber[i]} * 2 = ${newArrNumber[i] * 2}`);
+    }
 }
 // filter
 // Принимает фун-ю возвращает новый массив, который был отфильтрован условием
 function filter() {
-    alert("Весь массив");
-    alert(JSON.stringify(people));
-    const newPeople = people.filter((person) => person.age >= 18);
-    alert("Условие: старше 18 лет. Результат Filter");
-    alert(JSON.stringify(newPeople));
+    //   console.log("Весь массив");
+    //   console.log(JSON.stringify(people));
+    //   const newPeople = people.filter((person) => person.age >= 18);
+    //   console.log("Условие: старше 18 лет. Результат Filter");
+    //   console.log(JSON.stringify(newPeople));
+    let newPeople = [];
+    for (let i = 0; i < people.length; i++) {
+        if (people[i].age >= 18) {
+            newPeople.push(people[i]);
+        }
+    }
+    console.log(newPeople);
 }
 // some
 // вернет значение true, если хотя бы один элемент совпадет с
 // проверяемой функцией, и значение false — если нет
 function some() {
     const f = prompt("Узнайте в каких странах находятся наши филиалы.", "");
-    const arr = countries.some((elem) => {
-        return elem === f;
-    });
-    if (arr === true) {
-        alert(`В этой стране есть наш филиал`);
+    let found = false;
+    // const arr = countries.some((elem) => {
+    //   return elem === f;
+    // });
+    // if (arr === true) {
+    //   console.log(`В этой стране есть наш филиал`);
+    // } else {
+    //   console.log("В этой стране нет нашего филиала");
+    // }
+    for (let i = 0; i < countries.length; i++) {
+        if (f === countries[i]) {
+            found = true;
+            break;
+        }
+    }
+    if (found) {
+        console.log(`В этой стране есть наш филиал`);
     }
     else {
-        alert("В этой стране нет нашего филиала");
+        console.log("В этой стране нет нашего филиала");
     }
 }
 // Reduce
 // total - изначальное значение 0 / аккумулятор
 // people - итерируемый элемент массива
 function reduce() {
-    alert(`В компании ${people.length} человека`);
-    const summa = people.reduce((total, people) => total + people.money, 0);
-    alert(`Общий бюджет ${summa}`);
+    // console.log(`В компании ${people.length} человека`);
+    // const summa = people.reduce((total, people) => total + people.money, 0);
+    // console.log(`Общий бюджет ${summa}`);
+    let summa = 0;
+    for (let i = 0; i < people.length; i++) {
+        summa += people[i].money;
+    }
+    console.log(`Общий бюджет ${summa}`);
 }
 // find
 // Находит элемент массива
 function find() {
-    alert("Нужно найти Артема");
-    const firstName = people.find((people) => people.name === "Артем");
-    const result = `name: ${firstName.name}, age: ${firstName.age}, money: ${firstName.money}`;
-    alert(result);
+    console.log("Нужно найти Артема");
+    // const firstName = people.find((people) => people.name === "Артем");
+    // console.log(firstName);
+    for (let i = 0; i < people.length; i++) {
+        if (people[i].name === "Артем") {
+            console.log(people[i]);
+        }
+    }
 }
 // findIndex
 // Находит индекс элемента массива
 function findIndex() {
-    const firstNameIndex = people.findIndex((people) => people.name === "Кирилл");
-    const result = `${people[firstNameIndex].name} в очереди ${firstNameIndex + 1}`;
-    alert(result);
+    // const firstNameIndex = people.findIndex((people) => people.name === "Кирилл");
+    // const result = `${people[firstNameIndex].name} в очереди ${
+    //   firstNameIndex + 1
+    // }`;
+    // console.log(result);
+    for (let i = 0; i < people.length; i++) {
+        if (people[i].name === "Кирилл") {
+            console.log(i);
+        }
+    }
 }
 // every
 // Возвращает true если вся подходят под условие, иначе false
 function every() {
-    alert("У кого меньше 3000?");
-    const arr = people.every((people) => people.money < 3001);
-    if (arr === true) {
-        alert("У всех меньше 3000");
+    console.log("У кого меньше 3000?");
+    // const arr = people.every((people) => people.money < 3001);
+    // if (arr === true) {
+    //   console.log("У всех меньше 3000");
+    // } else {
+    //   console.log("У всех больше 3000");
+    // }
+    let found = false;
+    for (let i = 0; i < people.length; i++) {
+        if (people[i].money < 3001) {
+            found = true;
+            break;
+        }
+    }
+    if (found === true) {
+        console.log("У всех меньше 3000");
     }
     else {
-        alert("У всех больше 3000");
+        console.log("У всех больше 3000");
     }
 }
 // sort
@@ -127,30 +182,59 @@ function every() {
 // === 0 => ничего не меняется
 // < 0 => b первый
 function sort() {
-    const sortedPeople = people.sort((a, b) => a.money - b.money);
-    const names = sortedPeople.map((person) => person.name).join(" / ");
-    alert(` Список людей с количеством наличных по мере возрастания: ${names}`);
+    // const sortedPeople = people.sort((a, b) => a.money - b.money);
+    // const names = sortedPeople.map((person) => person.name).join(" / ");
+    // console.log(
+    //   ` Список людей с количеством наличных по мере возрастания: ${names}`
+    // );
+    for (let i = 0; i < people.length - 1; i++) {
+        for (let j = 0; j < people.length - 1 - i; j++) {
+            if (people[j].money > people[j + 1].money) {
+                let temp = people[j];
+                people[j] = people[j + 1];
+                people[j + 1] = temp;
+            }
+        }
+    }
+    console.log(people);
 }
 // concat
 // объединяет два или более массива и возвращает новый массив
 function concat() {
-    const newArr = arrNumber.concat(arrNumberTo);
-    alert(newArr);
+    // const newArr = arrNumber.concat(arrNumberTo);
+    // console.log(newArr);
+    const newArr = [];
+    for (let i = 0; i < arrNumber.length; i++) {
+        newArr.push(arrNumber[i]);
+    }
+    for (let i = 0; i < arrNumberTo.length; i++) {
+        newArr.push(arrNumberTo[i]);
+    }
+    console.log(newArr);
 }
 // fill
 // Изменяет исходный массив и возвращает ссылку на него
 // Заполняет массив (чем, от включительно, до не включая)
 function fill() {
-    alert(`До ${arrNumber}`);
-    const newArr = arrNumber.fill(0, 0, 4);
-    alert(`После ${newArr}`);
+    // console.log(`До ${arrNumber}`);
+    // const newArr = arrNumber.fill(0, 0, 4);
+    // console.log(`После ${newArr}`);
+    for (let i = 0; i < arrNumber.length - 1; i++) {
+        arrNumber[i] = 0;
+    }
+    console.log(arrNumber);
 }
 // reverse
 // меняет порядок следования элементов в массиве на обратный
 function reverse() {
-    alert(`До ${arrNumber}`);
-    const newArr = arrNumber.reverse();
-    alert(`После ${newArr}`);
+    // console.log(`До ${arrNumber}`);
+    // const newArr = arrNumber.reverse();
+    // console.log(`После ${newArr}`);
+    let newArr = [];
+    for (let i = arrNumber.length; i > 0; i--) {
+        newArr.push(arrNumber[i - 1]);
+    }
+    console.log(newArr);
 }
 // challenge
 forEachButton.addEventListener("click", forEach);
