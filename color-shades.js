@@ -1,13 +1,10 @@
-"use strict";
-const black = [0, 0, 0];
 function getColorShades(firstColor, lastColor, quantity) {
-    const shades = [];
-    for (let i = 0; i < quantity; i++) {
-        const r = (lastColor[0] - firstColor[0]) / (quantity - 1);
-        const g = (lastColor[1] - firstColor[1]) / (quantity - 1);
-        const b = (lastColor[2] - firstColor[2]) / (quantity - 1);
-        // Округляем значения до целых
-        shades.push([r, g, b]);
+    var shades = [];
+    for (var i = 0; i < quantity; i++) {
+        var r = firstColor[0] + ((lastColor[0] - firstColor[0]) * i) / (quantity - 1);
+        var g = firstColor[1] + ((lastColor[1] - firstColor[1]) * i) / (quantity - 1);
+        var b = firstColor[2] + ((lastColor[2] - firstColor[2]) * i) / (quantity - 1);
+        shades.push([Math.round(r), Math.round(g), Math.round(b)]);
     }
     return shades;
 }
@@ -25,3 +22,6 @@ function getColorShades(firstColor, lastColor, quantity) {
 // 18 - кол-во оттенков
 // 240 - кон цвет
 // (240 - 0) / (18 - 1)
+// Формула линейной интерполяции
+// C shades = C start + (C end - C start)*i) / quantity - 1
+//
