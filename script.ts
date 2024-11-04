@@ -1,62 +1,62 @@
 // arr
 
-const arrName: string[] = ["Артем", "Павел", "Кирилл"];
-const arrNumbers: number[] = [1, 2, 3, 4, 5];
-const arrNumbersTo: number[] = [10, 20, 30, 40, 50];
+const arrName: string[] = ["Артем", "Павел", "Кирилл"]
+const arrNumbers: number[] = [1, 2, 3, 4, 5]
+const arrNumbersTo: number[] = [10, 20, 30, 40, 50]
 const people: User[] = [
-  { name: "Артем", age: 15, money: 3000 },
-  { name: "Александр", age: 19, money: 2000 },
-  { name: "Кирилл", age: 20, money: 1500 },
-  { name: "Илья", age: 12, money: 1000 },
-];
+    { name: "Артем", age: 15, money: 3000 },
+    { name: "Александр", age: 19, money: 2000 },
+    { name: "Кирилл", age: 20, money: 1500 },
+    { name: "Илья", age: 12, money: 1000 },
+]
 
 type User = {
-  name: string;
-  age: number;
-  money: number;
-};
+    name: string
+    age: number
+    money: number
+}
 
 const countries: string[] = [
-  "Россия",
-  "Австралия",
-  "Австрия",
-  "Багамы",
-  "Венгрия",
-  "Гайана",
-  "Дания",
-  "Кипр",
-  "Корея",
-  "Турция",
-  "Эстония",
-  "Япония",
-];
+    "Россия",
+    "Австралия",
+    "Австрия",
+    "Багамы",
+    "Венгрия",
+    "Гайана",
+    "Дания",
+    "Кипр",
+    "Корея",
+    "Турция",
+    "Эстония",
+    "Япония",
+]
 
 // Объекты страницы
 
-const forEachElement = document.querySelector(".div__forEach")!;
-const forEachButton = forEachElement.querySelector(".button")!;
-const mapElement = document.querySelector(".div__map")!;
-const mapButton = mapElement.querySelector(".button")!;
-const filterElement = document.querySelector(".div__filter")!;
-const filterButton = filterElement.querySelector(".button")!;
-const someElement = document.querySelector(".div__some")!;
-const someButton = someElement.querySelector(".button")!;
-const reduceElement = document.querySelector(".div__reduce")!;
-const reduceButton = reduceElement.querySelector(".button")!;
-const findElement = document.querySelector(".div__find")!;
-const findButton = findElement.querySelector(".button")!;
-const findIndexElement = document.querySelector(".div__findIndex")!;
-const findIndexButton = findIndexElement.querySelector(".button")!;
-const everyElement = document.querySelector(".div__every")!;
-const everyButton = everyElement.querySelector(".button")!;
-const sortElement = document.querySelector(".div__sort")!;
-const sortButton = sortElement.querySelector(".button")!;
-const concatElement = document.querySelector(".div__concat")!;
-const concatButton = concatElement.querySelector(".button")!;
-const fillElement = document.querySelector(".div__fill")!;
-const fillButton = fillElement.querySelector(".button")!;
-const reverseElement = document.querySelector(".div__reverse")!;
-const reverseButton = reverseElement.querySelector(".button")!;
+const forEachElement = document.querySelector(".div__forEach")!
+const forEachButton = forEachElement.querySelector(".button")!
+const mapElement = document.querySelector(".div__map")!
+const mapButton = mapElement.querySelector(".button")!
+const filterElement = document.querySelector(".div__filter")!
+const filterButton = filterElement.querySelector(".button")!
+const someElement = document.querySelector(".div__some")!
+const someButton = someElement.querySelector(".button")!
+const reduceElement = document.querySelector(".div__reduce")!
+const reduceButton = reduceElement.querySelector(".button")!
+const findElement = document.querySelector(".div__find")!
+const findButton = findElement.querySelector(".button")!
+const findIndexElement = document.querySelector(".div__findIndex")!
+const findIndexButton = findIndexElement.querySelector(".button")!
+const everyElement = document.querySelector(".div__every")!
+const everyButton = everyElement.querySelector(".button")!
+const sortElement = document.querySelector(".div__sort")!
+const sortButton = sortElement.querySelector(".button")!
+const concatElement = document.querySelector(".div__concat")!
+const concatButton = concatElement.querySelector(".button")!
+const fillElement = document.querySelector(".div__fill")!
+const fillButton = fillElement.querySelector(".button")!
+const reverseElement = document.querySelector(".div__reverse")!
+const reverseButton = reverseElement.querySelector(".button")!
 
 // forEach
 
@@ -65,31 +65,25 @@ const reverseButton = reverseElement.querySelector(".button")!;
 //     console.log(`Привет ${elem}! Ваш талон ${id}. Список людей: ${arr}`)
 // })
 
-const myForEach = (
-  arr: string[],
-  callBack: (elem: string, id: number, arr: string[]) => void
-): void => {
-  for (let i = 0; i < arr.length; i++) {
-    callBack(arr[i], i, arr);
-  }
-};
+const myForEach = (arr: string[], callBack: (elem: string, index: number) => void): void => {
+    for (let i = 0; i < arr.length; i++) {
+        callBack(arr[i], i)
+    }
+}
 
 // map
 
 // Принимает фун-ю возвращает новый массив
 
-//   arrNumbers.map((elem, id, arr) => {
-//     console.log(`${elem} * 2 = ${elem * 2}`);
-//   });
+const new2 = arrNumbers.map((elem, id, arr) => {
+    return elem * 2
+})
 
-const myMup = (
-  arr: number[],
-  callBack: (elem: number, id: number, arr: number[]) => number
-): void => {
-  for (let i = 0; i < arr.length; i++) {
-    callBack(arr[i], i, arr);
-  }
-};
+const myMap = (arr: number[], callBack: (elem: number, index: number) => number): void => {
+    for (let i = 0; i < arr.length; i++) {
+        callBack(arr[i], i)
+    }
+}
 // forEach
 // 1.возвращает undefined
 // 2. forEach нужен для работы с элементами исходного массива
@@ -108,14 +102,16 @@ const myMup = (
 //   console.log(JSON.stringify(newPeople));
 
 const myFilter = (arr: User[], condition: (user: User) => boolean): User[] => {
-  let newPeople: User[] = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (condition(arr[i])) {
-      newPeople.push(arr[i]);
+    const newPeople: User[] = []
+
+    for (let i = 0; i < arr.length; i++) {
+        if (condition(arr[i])) {
+            newPeople.push(arr[i])
+        }
     }
-  }
-  return newPeople;
-};
+
+    return newPeople
+}
 
 // some
 
@@ -132,20 +128,20 @@ const myFilter = (arr: User[], condition: (user: User) => boolean): User[] => {
 // }
 
 const mySome = (arr: string[]): void => {
-  const f = prompt("Узнайте в каких странах находятся наши филиалы.", "");
-  let found: boolean = false;
-  for (let i = 0; i < arr.length; i++) {
-    if (f === arr[i]) {
-      found = true;
-      break;
+    const f = prompt("Узнайте в каких странах находятся наши филиалы.", "")
+    let found: boolean = false
+    for (let i = 0; i < arr.length; i++) {
+        if (f === arr[i]) {
+            found = true
+            break
+        }
     }
-  }
-  if (found) {
-    console.log(`В этой стране есть наш филиал`);
-  } else {
-    console.log("В этой стране нет нашего филиала");
-  }
-};
+    if (found) {
+        console.log(`В этой стране есть наш филиал`)
+    } else {
+        console.log("В этой стране нет нашего филиала")
+    }
+}
 
 // Reduce
 
@@ -156,16 +152,13 @@ const mySome = (arr: string[]): void => {
 // const summa = people.reduce((total, people) => total + people.money, 0);
 // console.log(`Общий бюджет ${summa}`);
 
-const myReduce = (
-  arr: User[],
-  callBack: (total: number, people: User) => number
-): number => {
-  let total: number = 0;
-  for (let i = 0; i < arr.length; i++) {
-    total += callBack(total, arr[i]);
-  }
-  return total;
-};
+const myReduce = (arr: User[], callBack: (total: number, people: User) => number): number => {
+    let total: number = 0
+    for (let i = 0; i < arr.length; i++) {
+        total += callBack(total, arr[i])
+    }
+    return total
+}
 
 // find
 
@@ -174,17 +167,14 @@ const myReduce = (
 // const firstName = people.find((people) => people.name === "Артем");
 // console.log(firstName);
 
-const myFind = (
-  arr: User[],
-  callBack: (elem: User, id: number, arr: User[]) => boolean
-): User | undefined => {
-  for (let i = 0; i < arr.length; i++) {
-    if (callBack(arr[i], i, arr)) {
-      return arr[i];
+const myFind = (arr: User[], callBack: (elem: User, index: number, arr: User[]) => boolean): User | undefined => {
+    for (let i = 0; i < arr.length; i++) {
+        if (callBack(arr[i], i, arr)) {
+            return arr[i]
+        }
     }
-  }
-  return undefined;
-};
+    return undefined
+}
 
 // findIndex
 
@@ -196,20 +186,17 @@ const myFind = (
 // }`;
 // console.log(result);
 
-const myFindIndex = (
-  arr: User[],
-  callBack: (elem: User, id: number, arr: User[]) => boolean
-): number | undefined => {
-  for (let i = 0; i < arr.length; i++) {
-    if (callBack(arr[i], i, arr)) {
-      return i;
+const myFindIndex = (arr: User[], callBack: (elem: User, id: number, arr: User[]) => boolean): number | undefined => {
+    for (let i = 0; i < arr.length; i++) {
+        if (callBack(arr[i], i, arr)) {
+            return i
+        }
     }
-  }
-  return undefined;
-};
+    return undefined
+}
 
 // every
-// Возвращает true если вся подходят под условие, иначе false
+// Возвращает true если вся коллекция подходит под условие, иначе false
 
 // const arr = people.every((people) => people.money < 3001);
 // if (arr === true) {
@@ -218,23 +205,15 @@ const myFindIndex = (
 //   console.log("У всех больше 3000");
 // }
 
-const MyEvery = (
-  arr: User[],
-  callBack: (elem: User, id: number, arr: User[]) => boolean
-): void => {
-  let found: boolean = true;
-  for (let i = 0; i < arr.length; i++) {
-    if (!callBack(arr[i], i, arr)) {
-      found = false;
-      break;
+const myEvery = (arr: User[], isValid: (elem: User, id: number, arr: User[]) => boolean): boolean => {
+    for (let i = 0; i < arr.length; i++) {
+        if (!isValid(arr[i], i, arr)) {
+            return false
+        }
     }
-  }
-  if (found) {
-    console.log("У кого меньше 3000?");
-  } else {
-    console.log("У кого больше 3000?");
-  }
-};
+
+    return true
+}
 
 // sort
 // Сортировка a сравнивается с b
@@ -249,17 +228,17 @@ const MyEvery = (
 // );
 
 const mySort = (arr: User[], callBack: (a: User, b: User) => number): void => {
-  for (let i = 0; i < arr.length - 1; i++) {
-    for (let j = 0; j < arr.length - 1 - i; j++) {
-      if (callBack(arr[j], arr[j + 1])) {
-        let temp = arr[j];
-        arr[j] = arr[j + 1];
-        arr[j + 1] = temp;
-      }
+    for (let i = 0; i < arr.length - 1; i++) {
+        for (let j = 0; j < arr.length - 1 - i; j++) {
+            if (callBack(arr[j], arr[j + 1])) {
+                let temp = arr[j]
+                arr[j] = arr[j + 1]
+                arr[j + 1] = temp
+            }
+        }
     }
-  }
-  console.log(arr);
-};
+    console.log(arr)
+}
 
 // concat
 // объединяет два или более массива и возвращает новый массив
@@ -267,20 +246,9 @@ const mySort = (arr: User[], callBack: (a: User, b: User) => number): void => {
 // const newArr = arrNumbers.concat(arrNumbersTo);
 // console.log(newArr);
 
-const myConcat = (
-  arr: number[],
-  arrTo: number[],
-  callBack: (a: number, b: number) => number
-): void => {
-  const newArr: number[] = [];
-  for (let i = 0; i < arr.length; i++) {
-    newArr.push(arr[i]);
-  }
-  for (let i = 0; i < arrTo.length; i++) {
-    newArr.push(arrTo[i]);
-  }
-  console.log(newArr);
-};
+const myConcat = (arr: number[], arrTo: number[]): number[] => {
+    return [...arr, ...arrTo]
+}
 
 // fill
 // Изменяет исходный массив и возвращает ссылку на него
@@ -290,92 +258,85 @@ const myConcat = (
 // const newArr = arrNumbers.fill(0, 0, 4);
 // console.log(`После ${newArr}`);
 
-const myFill = (
-  arr: number[],
-  constant: number,
-  start: number,
-  end: number
-): void => {
-  const validStart = Math.max(0, start);
-  const validEnd = Math.min(arr.length, end);
-  for (let i = validStart; i < validEnd - 1; i++) {
-    arr[i] = constant;
-  }
+const myFill = (arr: number[], constant: number, start: number, end: number): void => {
+    const validStart = Math.max(0, start)
+    const validEnd = Math.min(arr.length, end)
+    for (let i = validStart; i < validEnd - 1; i++) {
+        arr[i] = constant
+    }
 
-  console.log(arr);
-};
+    console.log(arr)
+}
 
 // reverse
 // меняет порядок следования элементов в массиве на обратный
 
 // console.log(`До ${arrNumbers}`);
-// const newArr = arrNumbers.reverse();
+arrNumbers.reverse()
 // console.log(`После ${newArr}`);
 
-const myReverse = (arr: number[]): void => {
-  let newArr: number[] = [];
-  for (let i = arr.length; i > 0; i--) {
-    newArr.push(arr[i - 1]);
-  }
-  console.log(newArr);
-};
+const myReverse = (arr: number[]): number[] => {
+    let newArr: number[] = []
+    for (let i = arr.length; i > 0; i--) {
+        newArr.push(arr[i - 1])
+    }
+    return newArr
+}
 
 // challenge
 
 forEachButton.addEventListener("click", () => {
-  myForEach(arrName, (elem, id, arr) => {
-    console.log(`Привет ${elem}! Ваш талон ${id}. Список людей: ${arr}`);
-  });
-});
+    myForEach(arrName, (elem, id, arr) => {
+        console.log(`Привет ${elem}! Ваш талон ${id}. Список людей: ${arr}`)
+    })
+})
+
 mapButton.addEventListener("click", () => {
-  let newArrNumbers: number[] = [];
-  myMup(arrNumbers, (elem: number, i: number, arr: number[]) => {
-    newArrNumbers.push(arr[i]);
-    console.log(`${newArrNumbers[i]} * 2 = ${newArrNumbers[i] * 2}`);
-    return newArrNumbers[i] * 2;
-  });
-});
+    const newArray = myMap(arrNumbers, (elem: number, i: number) => {
+        return elem * 2
+    })
+})
 filterButton.addEventListener("click", () => {
-  myFilter(people, (user: User) => user.age <= 18);
-});
+    myFilter(people, (user: User) => user.age <= 18)
+})
 someButton.addEventListener("click", () => {
-  mySome(countries);
-});
+    mySome(countries)
+})
 reduceButton.addEventListener("click", () => {
-  myReduce(people, (total: number, person: User) => total + person.money);
-});
+    myReduce(people, (total: number, person: User) => total + person.money)
+})
 findButton.addEventListener("click", () => {
-  const foundUser = myFind(people, (user: User) => user.age === 20);
+    const foundUser = myFind(people, (user: User) => user.age === 20)
 
-  if (foundUser) {
-    console.log("Найден пользователь:", foundUser);
-  } else {
-    console.log("Пользователь с возрастом 20 не найден.");
-  }
-});
+    if (foundUser) {
+        console.log("Найден пользователь:", foundUser)
+    } else {
+        console.log("Пользователь с возрастом 20 не найден.")
+    }
+})
 findIndexButton.addEventListener("click", () => {
-  const index = myFindIndex(people, (elem, id, arr) => {
-    return elem.name === "Кирилл";
-  });
+    const index = myFindIndex(people, (elem, id, arr) => {
+        return elem.name === "Кирилл"
+    })
 
-  if (index !== undefined) {
-    console.log(index);
-  } else {
-    console.log("Элемент не найден.");
-  }
-});
+    if (index !== undefined) {
+        console.log(index)
+    } else {
+        console.log("Элемент не найден.")
+    }
+})
 everyButton.addEventListener("click", () => {
-  MyEvery(people, (user: User) => user.money > 3000);
-});
+    myEvery(people, (user: User) => user.money > 3000)
+})
 sortButton.addEventListener("click", () => {
-  mySort(people, (a: User, b: User) => a.money - b.money);
-});
+    mySort(people, (a: User, b: User) => a.money - b.money)
+})
 concatButton.addEventListener("click", () => {
-  myConcat(arrNumbers, arrNumbersTo, (a: number, b: number) => a + b);
-});
+    myConcat(arrNumbers, arrNumbersTo, (a: number, b: number) => a + b)
+})
 fillButton.addEventListener("click", () => {
-  myFill(arrNumbers, 0, 0, 5);
-});
+    myFill(arrNumbers, 0, 0, 5)
+})
 reverseButton.addEventListener("click", () => {
-  myReverse(arrNumbers);
-});
+    myReverse(arrNumbers)
+})

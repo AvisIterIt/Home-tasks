@@ -1,25 +1,18 @@
-function getColorShades(
-  firstColor: number[],
-  lastColor: number[],
-  quantity: number
-): number[][] {
-  const shades: number[][] = [];
+function getColorShades(firstColor: number[], lastColor: number[], quantity: number): number[][] {
+    const shades: number[][] = []
 
-  for (let i = 0; i < quantity; i++) {
-    const r: number =
-      firstColor[0] + ((lastColor[0] - firstColor[0]) * i) / (quantity - 1);
-    const g: number =
-      firstColor[1] + ((lastColor[1] - firstColor[1]) * i) / (quantity - 1);
-    const b: number =
-      firstColor[2] + ((lastColor[2] - firstColor[2]) * i) / (quantity - 1);
+    for (let i = 0; i < quantity; i++) {
+        const r: number = firstColor[0] + ((lastColor[0] - firstColor[0]) * i) / (quantity - 1)
+        const g: number = firstColor[1] + ((lastColor[1] - firstColor[1]) * i) / (quantity - 1)
+        const b: number = firstColor[2] + ((lastColor[2] - firstColor[2]) * i) / (quantity - 1)
 
-    shades.push([Math.round(r), Math.round(g), Math.round(b)]);
-  }
+        shades.push([Math.round(r), Math.round(g), Math.round(b)])
+    }
 
-  return shades;
+    return shades
 }
 
-//console.log(getColorShades([0, 0, 0], [120, 150, 190], 4));
+console.log(getColorShades([0, 0, 0], [120, 150, 190], 4))
 
 //  0 0 0
 //  100 100 100
