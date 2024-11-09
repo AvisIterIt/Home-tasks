@@ -1,47 +1,46 @@
-var block = document.querySelector(".block");
-var blockOne = document.querySelector(".block__one");
-var blockOneTwo = document.querySelector(".block__one-two");
-var blockOneThree = document.querySelector(".block__one-three");
-var blockOneThreeOne = document.querySelector(".block__one-three-one");
-var blockOneThreeTwo = document.querySelector(".block__one-three-two");
-var blockTwo = document.querySelector(".block__two");
-var blockTwoThree = document.querySelector(".block__two-three");
-var blockThreeFour = document.querySelector(".block__three-four");
-var blockThreeFive = document.querySelector(".block__three-five");
-var blockFiveSix = document.querySelector(".block__five-six");
-var blockFiveSeven = document.querySelector(".block__five-seven");
-var blockTwoFour = document.querySelector(".block__two-four");
-var blockFourFive = document.querySelector(".block__four-five");
-var blockHide = document.querySelector(".block__hide");
-var blockFourSix = document.querySelector(".block__four-six");
-var blockSixSeven = document.querySelector(".block__six-seven");
-var blockSixEight = document.querySelector(".block__six-eight");
-var blockFourSixSeven = document.querySelector(".block__four-six-seven");
-var blockFourSixEight = document.querySelector(".block__four-six-eight");
-var blockEightNine = document.querySelector(".block__eight-nine");
-var blockFourSeven = document.querySelector(".block__four-seven");
-var inputHorizontal = document.querySelector(".toggle-position-horizontal");
-var inputVertical = document.querySelector(".toggle-position-vertical");
+"use strict";
+const block = document.querySelector(".block");
+const blockOne = document.querySelector(".block__one");
+const blockOneTwo = document.querySelector(".block__one-two");
+const blockOneThree = document.querySelector(".block__one-three");
+const blockOneThreeOne = document.querySelector(".block__one-three-one");
+const blockOneThreeTwo = document.querySelector(".block__one-three-two");
+const blockTwo = document.querySelector(".block__two");
+const blockTwoThree = document.querySelector(".block__two-three");
+const blockThreeFour = document.querySelector(".block__three-four");
+const blockThreeFive = document.querySelector(".block__three-five");
+const blockFiveSix = document.querySelector(".block__five-six");
+const blockFiveSeven = document.querySelector(".block__five-seven");
+const blockTwoFour = document.querySelector(".block__two-four");
+const blockFourFive = document.querySelector(".block__four-five");
+const blockHide = document.querySelector(".block__hide");
+const blockFourSix = document.querySelector(".block__four-six");
+const blockSixSeven = document.querySelector(".block__six-seven");
+const blockSixEight = document.querySelector(".block__six-eight");
+const blockFourSixSeven = document.querySelector(".block__four-six-seven");
+const blockFourSixEight = document.querySelector(".block__four-six-eight");
+const blockEightNine = document.querySelector(".block__eight-nine");
+const blockFourSeven = document.querySelector(".block__four-seven");
+const inputHorizontal = document.querySelector(".toggle-position-horizontal");
+const inputVertical = document.querySelector(".toggle-position-vertical");
 // Перемещение элемента внутри блока
 function moveBlock(slider, direction) {
-    var value = parseInt(slider.value);
-    var parent = blockEightNine.closest(".position-relative");
+    let value = parseInt(slider.value);
+    const parent = blockEightNine.closest(".position-relative");
     if (parent) {
-        var parentSize = direction === "left" ? parent.clientWidth : parent.clientHeight;
-        var blockSize = direction === "left"
-            ? blockEightNine.clientWidth
-            : blockEightNine.clientHeight;
-        var maxPercent = ((parentSize - blockSize) / parentSize) * 100;
+        const parentSize = direction === "left" ? parent.clientWidth : parent.clientHeight;
+        const blockSize = direction === "left" ? blockEightNine.clientWidth : blockEightNine.clientHeight;
+        const maxPercent = ((parentSize - blockSize) / parentSize) * 100;
         if (value > maxPercent) {
             value = maxPercent;
         }
         else if (value < 0) {
             value = 0;
         }
-        blockEightNine.style[direction] = "".concat(value, "%");
+        blockEightNine.style[direction] = `${value}%`;
     }
 }
-// Перемещение элемента относительно родителя, у которого усть класс position-relative
+// Перемещение элемента относительно родителя, у которого есть класс position-relative
 function togglePosition(parent) {
     if (parent.classList.contains("position-relative")) {
         blockSixEight.classList.remove("position-relative");
@@ -87,9 +86,7 @@ function controller(e) {
     }
 }
 // Обработчик событий ползунков
-inputVertical.addEventListener("input", function () { return moveBlock(inputVertical, "top"); });
-inputHorizontal.addEventListener("input", function () {
-    return moveBlock(inputHorizontal, "left");
-});
+inputVertical.addEventListener("input", () => moveBlock(inputVertical, "top"));
+inputHorizontal.addEventListener("input", () => moveBlock(inputHorizontal, "left"));
 // Обработчик события контролера
 block.addEventListener("click", controller);

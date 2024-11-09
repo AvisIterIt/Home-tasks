@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>toDo list</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="todo-list">
+        <div class="todo-list__wrapper">
+            <h1 class="wrapper__title">
+                ToDo list
+            </h1>
+            <div class="wrapper__body">
+                <div class="body__todo">
+                    <input class="todo__input" type="text" maxlength="30">
+                    <button class="todo__button" style="background-color:green">Добавить</button>
+                </div>
+                <div class="body__list">
+                    <h2 class="list__greetings">Список дел пока пуст</h2>
+                    <template id="template">
+                        <div class="list__item">
+                            <h2 class="list__title"></h2>
+                            <img class="list__done" width="24px" height="24px" src="./icon/check-green.png" alt="check">
+                            <img class="list__delete" width="24px" height="24px" src="./icon/check-delete.png"
+                                alt="check">
+                        </div>
+                    </template>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>
