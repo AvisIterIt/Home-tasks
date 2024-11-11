@@ -64,9 +64,11 @@ const new2 = arrNumbers.map((elem, id, arr) => {
     return elem * 2;
 });
 const myMap = (arr, callBack) => {
+    const result = [];
     for (let i = 0; i < arr.length; i++) {
-        callBack(arr[i], i);
+        result.push(callBack(arr[i], i));
     }
+    return result;
 };
 // forEach
 // 1.возвращает undefined
@@ -101,21 +103,13 @@ const myFilter = (arr, condition) => {
 // } else {
 //   console.log("В этой стране нет нашего филиала");
 // }
-const mySome = (arr) => {
-    const f = prompt("Узнайте в каких странах находятся наши филиалы.", "");
-    let found = false;
+const mySome = (arr, f) => {
     for (let i = 0; i < arr.length; i++) {
         if (f === arr[i]) {
-            found = true;
-            break;
+            return true;
         }
     }
-    if (found) {
-        console.log(`В этой стране есть наш филиал`);
-    }
-    else {
-        console.log("В этой стране нет нашего филиала");
-    }
+    return false;
 };
 // Reduce
 // total - изначальное значение 0 / аккумулятор
@@ -219,19 +213,18 @@ const myFill = (arr, constant, start, end) => {
 // reverse
 // меняет порядок следования элементов в массиве на обратный
 // console.log(`До ${arrNumbers}`);
-arrNumbers.reverse();
+//arrNumbers.reverse();
 // console.log(`После ${newArr}`);
 const myReverse = (arr) => {
-    let newArr = [];
-    for (let i = arr.length; i > 0; i--) {
-        newArr.push(arr[i - 1]);
+    for (let i = arr.length - 1; i >= 0; i--) {
+        arr.push(arr[i]);
     }
-    return newArr;
+    return arr;
 };
 // challenge
 forEachButton.addEventListener("click", () => {
-    myForEach(arrName, (elem, id, arr) => {
-        console.log(`Привет ${elem}! Ваш талон ${id}. Список людей: ${arr}`);
+    myForEach(arrName, (elem, index) => {
+        console.log(`Привет ${elem}! Ваш талон ${index}.`);
     });
 });
 mapButton.addEventListener("click", () => {
@@ -243,7 +236,7 @@ filterButton.addEventListener("click", () => {
     myFilter(people, (user) => user.age <= 18);
 });
 someButton.addEventListener("click", () => {
-    mySome(countries);
+    mySome(countries, "Россия");
 });
 reduceButton.addEventListener("click", () => {
     myReduce(people, (total, person) => total + person.money);
@@ -275,7 +268,7 @@ sortButton.addEventListener("click", () => {
     mySort(people, (a, b) => a.money - b.money);
 });
 concatButton.addEventListener("click", () => {
-    myConcat(arrNumbers, arrNumbersTo, (a, b) => a + b);
+    myConcat(arrNumbers, arrNumbersTo);
 });
 fillButton.addEventListener("click", () => {
     myFill(arrNumbers, 0, 0, 5);
