@@ -18,7 +18,6 @@ function greetingsElement() {
 
 function itemElement() {
     const clone = template.content.cloneNode(true) as DocumentFragment;
-    const cloneListItem = clone.querySelector(".list__item") as HTMLElement;
     const cloneTitle = clone.querySelector(".list__title") as HTMLElement;
     const cloneDeleteItem = clone.querySelector(".list__delete") as HTMLElement;
     const cloneDoneItem = clone.querySelector(".list__done") as HTMLElement;

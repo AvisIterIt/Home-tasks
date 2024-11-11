@@ -31,35 +31,42 @@ function getColorShades(firstColor, lastColor, quantity) {
 }
 // Установка градиентов в HTML
 function challenge(result) {
-    if (result.length === 4) {
-        colorItemOne.style.backgroundColor = `rgb(${result[0]})`;
-        colorItemTwo.style.backgroundColor = `rgb(${result[1]})`;
-        colorItemThree.style.backgroundColor = `rgb(${result[2]})`;
-        colorItemFour.style.backgroundColor = `rgb(${result[3]})`;
-    }
-    else if (result.length === 3) {
-        colorItemOne.style.backgroundColor = `rgb(${result[0]})`;
-        colorItemTwo.style.backgroundColor = `rgb(${result[1]})`;
-        colorItemThree.style.backgroundColor = `rgb(${result[2]})`;
-        colorItemFour.style.backgroundColor = `rgb(255, 255, 255)`;
-    }
-    else if (result.length === 2) {
-        colorItemOne.style.backgroundColor = `rgb(${result[0]})`;
-        colorItemTwo.style.backgroundColor = `rgb(${result[1]})`;
-        colorItemThree.style.backgroundColor = `rgb(255, 255, 255)`;
-        colorItemFour.style.backgroundColor = `rgb(255, 255, 255)`;
-    }
-    else if (result.length === 1) {
-        colorItemOne.style.backgroundColor = `rgb(${result[0]})`;
-        colorItemTwo.style.backgroundColor = `rgb(255, 255, 255)`;
-        colorItemThree.style.backgroundColor = `rgb255, 255, 255)`;
-        colorItemFour.style.backgroundColor = `rgb(255, 255, 255)`;
-    }
-    else if (result.length === 0) {
-        colorItemOne.style.backgroundColor = `rgb(255, 255, 255)`;
-        colorItemTwo.style.backgroundColor = `rgb(255, 255, 255)`;
-        colorItemThree.style.backgroundColor = `rgb(255, 255, 255)`;
-        colorItemFour.style.backgroundColor = `rgb(255, 255, 255)`;
+    switch (result.length) {
+        case 4: {
+            colorItemOne.style.backgroundColor = `rgb(${result[0]})`;
+            colorItemTwo.style.backgroundColor = `rgb(${result[1]})`;
+            colorItemThree.style.backgroundColor = `rgb(${result[2]})`;
+            colorItemFour.style.backgroundColor = `rgb(${result[3]})`;
+            break;
+        }
+        case 3: {
+            colorItemOne.style.backgroundColor = `rgb(${result[0]})`;
+            colorItemTwo.style.backgroundColor = `rgb(${result[1]})`;
+            colorItemThree.style.backgroundColor = `rgb(${result[2]})`;
+            colorItemFour.style.backgroundColor = `rgb(255, 255, 255)`;
+            break;
+        }
+        case 2: {
+            colorItemOne.style.backgroundColor = `rgb(${result[0]})`;
+            colorItemTwo.style.backgroundColor = `rgb(${result[1]})`;
+            colorItemThree.style.backgroundColor = `rgb(255, 255, 255)`;
+            colorItemFour.style.backgroundColor = `rgb(255, 255, 255)`;
+            break;
+        }
+        case 1: {
+            colorItemOne.style.backgroundColor = `rgb(${result[0]})`;
+            colorItemTwo.style.backgroundColor = `rgb(255, 255, 255)`;
+            colorItemThree.style.backgroundColor = `rgb(255, 255, 255)`;
+            colorItemFour.style.backgroundColor = `rgb(255, 255, 255)`;
+            break;
+        }
+        case 0: {
+            colorItemOne.style.backgroundColor = `rgb(255, 255, 255)`;
+            colorItemTwo.style.backgroundColor = `rgb(255, 255, 255)`;
+            colorItemThree.style.backgroundColor = `rgb(255, 255, 255)`;
+            colorItemFour.style.backgroundColor = `rgb(255, 255, 255)`;
+            break;
+        }
     }
 }
 // Сбор значений из input-ов и вызов функций

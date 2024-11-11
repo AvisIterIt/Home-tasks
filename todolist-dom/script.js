@@ -15,7 +15,6 @@ function greetingsElement() {
 // Клонирование и вывод элементов
 function itemElement() {
     const clone = template.content.cloneNode(true);
-    const cloneListItem = clone.querySelector(".list__item");
     const cloneTitle = clone.querySelector(".list__title");
     const cloneDeleteItem = clone.querySelector(".list__delete");
     const cloneDoneItem = clone.querySelector(".list__done");
