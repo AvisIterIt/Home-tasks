@@ -2,80 +2,80 @@ const button = document.querySelector(".todo__button") as HTMLButtonElement;
 const input = document.querySelector(".todo__input") as HTMLInputElement;
 const template = document.querySelector("#template") as HTMLTemplateElement;
 const bodyList = document.querySelector(".body__list") as HTMLElement;
-const greetings = document.querySelector(".list__greetings") as HTMLElement;
+const placeholder = document.querySelector(".list__greetings") as HTMLElement;
 const doneItem = document.querySelector(".list__done") as HTMLElement;
 const deleteItem = document.querySelector(".list__delete") as HTMLElement;
 
+type Todo = {
+    title: string;
+    done: boolean;
+};
+
+const todos: Todo[] = [{ title: "", done: false }];
+
 // Надпись "Список дел пока пуст"
 
-function greetingsElement() {
-    if (bodyList.contains(greetings)) {
-        greetings.remove();
+function ensurePlaceholder() {
+    if (todos.length > 0) {
+        placeholder.remove();
+    } else {
+        bodyList.appendChild(placeholder);
     }
 }
 
-// Клонирование и вывод элементов
-
-function itemElement() {
+function cloneAndPrintElements() {
     const clone = template.content.cloneNode(true) as DocumentFragment;
+    const cloneListItem = clone.querySelector(".list__item") as HTMLElement;
     const cloneTitle = clone.querySelector(".list__title") as HTMLElement;
     const cloneDeleteItem = clone.querySelector(".list__delete") as HTMLElement;
-    const cloneDoneItem = clone.querySelector(".list__done") as HTMLElement;
+
     cloneTitle.textContent = input.value;
-    bodyList.append(clone);
 
     input.value = "";
-    deleteElement(cloneDeleteItem);
-    doneElement(cloneDoneItem, cloneTitle);
+    onDoneClick(cloneListItem);
+    onDeleteClick(cloneDeleteItem);
+
+    bodyList.append(cloneListItem);
 }
 
-// Удаление элементов
-
-function deleteElement(cloneDeleteItem: HTMLElement) {
-    if (cloneDeleteItem) {
-        cloneDeleteItem.addEventListener("click", () => {
-            cloneDeleteItem.parentElement?.remove();
-            greetingsElement();
-        });
-    }
+function onDeleteClick(cloneDeleteItem: HTMLElement) {
+    cloneDeleteItem.addEventListener("click", () => {
+        cloneDeleteItem.parentElement?.remove();
+        ensurePlaceholder();
+    });
 }
 
-// Выполнение элементов
+function onDoneClick(clone: HTMLElement) {
+    const cloneDoneItem = clone.querySelector(
+        ".list__done"
+    ) as HTMLImageElement;
 
-function doneElement(cloneDoneItem: HTMLElement, cloneTitle: HTMLElement) {
-    if (cloneDoneItem) {
-        cloneDoneItem.addEventListener("click", () => {
-            cloneTitle.classList.toggle("line-through");
-            if (cloneTitle.classList.contains("line-through")) {
-                (cloneDoneItem as HTMLImageElement).src =
-                    "./icon/check-black.png";
-            } else if (!cloneTitle.classList.contains("line-through")) {
-                (cloneDoneItem as HTMLImageElement).src =
-                    "./icon/check-green.png";
-            }
-        });
-    }
+    cloneDoneItem.addEventListener("click", () => {
+        clone.classList.toggle("done");
+
+        if (clone.classList.contains("done")) {
+            cloneDoneItem.src = "./icon/check-black.png";
+        } else if (!clone.classList.contains("done")) {
+            cloneDoneItem.src = "./icon/check-green.png";
+        }
+    });
 }
 
 // Добавление элементов
 
+// '', null, undefined
 button.addEventListener("click", () => {
-    if (input.value !== "") {
-        greetingsElement();
-        itemElement();
+    if (input.value) {
+        ensurePlaceholder();
+        cloneAndPrintElements();
     }
 });
 
 // ввод по нажатию клавиши Enter
 
 input.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" && input.value !== "") {
-        greetingsElement();
-        itemElement();
+    if (event.key === "Enter" && input.value) {
+        ensurePlaceholder();
+        cloneAndPrintElements();
     }
-});
-
-// При загрузки страницы выбран input
-document.addEventListener("DOMContentLoaded", () => {
-    input.focus();
 });

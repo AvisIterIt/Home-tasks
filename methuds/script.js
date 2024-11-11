@@ -86,7 +86,7 @@ const myMap = (arr, callBack) => {
 const myFilter = (arr, condition) => {
     const newPeople = [];
     for (let i = 0; i < arr.length; i++) {
-        if (condition(arr[i])) {
+        if (condition(arr[i], i)) {
             newPeople.push(arr[i]);
         }
     }
@@ -103,27 +103,18 @@ const myFilter = (arr, condition) => {
 // } else {
 //   console.log("В этой стране нет нашего филиала");
 // }
-const mySome = (arr, f) => {
+const mySome = (arr, searchValue) => {
     for (let i = 0; i < arr.length; i++) {
-        if (f === arr[i]) {
+        if (searchValue === arr[i]) {
             return true;
         }
     }
     return false;
 };
-// Reduce
-// total - изначальное значение 0 / аккумулятор
-// people - итерируемый элемент массива
-// console.log(`В компании ${people.length} человека`);
-// const summa = people.reduce((total, people) => total + people.money, 0);
-// console.log(`Общий бюджет ${summa}`);
-const myReduce = (arr, callBack) => {
-    let total = 0;
-    for (let i = 0; i < arr.length; i++) {
-        total += callBack(total, arr[i]);
-    }
-    return total;
-};
+const user1 = { name: "Артем", age: 18 };
+const user2 = { name: "B", age: 10 };
+const user3 = { name: "C", age: 11 };
+// const x = [user1, user2, user3].some();
 // find
 // Находит элемент массива
 // const firstName = people.find((people) => people.name === "Артем");
@@ -149,7 +140,7 @@ const myFindIndex = (arr, callBack) => {
             return i;
         }
     }
-    return undefined;
+    return -1;
 };
 // every
 // Возвращает true если вся коллекция подходит под условие, иначе false
@@ -237,9 +228,6 @@ filterButton.addEventListener("click", () => {
 });
 someButton.addEventListener("click", () => {
     mySome(countries, "Россия");
-});
-reduceButton.addEventListener("click", () => {
-    myReduce(people, (total, person) => total + person.money);
 });
 findButton.addEventListener("click", () => {
     const foundUser = myFind(people, (user) => user.age === 20);

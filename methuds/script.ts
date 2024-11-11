@@ -109,11 +109,14 @@ const myMap = (
 //   console.log("Условие: старше 18 лет. Результат Filter");
 //   console.log(JSON.stringify(newPeople));
 
-const myFilter = (arr: User[], condition: (user: User) => boolean): User[] => {
+const myFilter = (
+    arr: User[],
+    condition: (user: User, index: number) => boolean
+): User[] => {
     const newPeople: User[] = [];
 
     for (let i = 0; i < arr.length; i++) {
-        if (condition(arr[i])) {
+        if (condition(arr[i], i)) {
             newPeople.push(arr[i]);
         }
     }
@@ -135,34 +138,20 @@ const myFilter = (arr: User[], condition: (user: User) => boolean): User[] => {
 //   console.log("В этой стране нет нашего филиала");
 // }
 
-const mySome = (arr: string[], f: string): boolean => {
+const mySome = (arr: string[], searchValue: string): boolean => {
     for (let i = 0; i < arr.length; i++) {
-        if (f === arr[i]) {
+        if (searchValue === arr[i]) {
             return true;
         }
     }
     return false;
 };
 
-// Reduce
+const user1 = { name: "Артем", age: 18 };
+const user2 = { name: "B", age: 10 };
+const user3 = { name: "C", age: 11 };
 
-// total - изначальное значение 0 / аккумулятор
-// people - итерируемый элемент массива
-
-// console.log(`В компании ${people.length} человека`);
-// const summa = people.reduce((total, people) => total + people.money, 0);
-// console.log(`Общий бюджет ${summa}`);
-
-const myReduce = (
-    arr: User[],
-    callBack: (total: number, people: User) => number
-): number => {
-    let total: number = 0;
-    for (let i = 0; i < arr.length; i++) {
-        total += callBack(total, arr[i]);
-    }
-    return total;
-};
+// const x = [user1, user2, user3].some();
 
 // find
 
@@ -195,14 +184,14 @@ const myFind = (
 
 const myFindIndex = (
     arr: User[],
-    callBack: (elem: User, id: number, arr: User[]) => boolean
-): number | undefined => {
+    callBack: (elem: User, index: number, arr: User[]) => boolean
+): number => {
     for (let i = 0; i < arr.length; i++) {
         if (callBack(arr[i], i, arr)) {
             return i;
         }
     }
-    return undefined;
+    return -1;
 };
 
 // every
@@ -217,7 +206,7 @@ const myFindIndex = (
 
 const myEvery = (
     arr: User[],
-    isValid: (elem: User, id: number, arr: User[]) => boolean
+    isValid: (elem: User, index: number, arr: User[]) => boolean
 ): boolean => {
     for (let i = 0; i < arr.length; i++) {
         if (!isValid(arr[i], i, arr)) {
@@ -318,9 +307,6 @@ filterButton.addEventListener("click", () => {
 });
 someButton.addEventListener("click", () => {
     mySome(countries, "Россия");
-});
-reduceButton.addEventListener("click", () => {
-    myReduce(people, (total: number, person: User) => total + person.money);
 });
 findButton.addEventListener("click", () => {
     const foundUser = myFind(people, (user: User) => user.age === 20);

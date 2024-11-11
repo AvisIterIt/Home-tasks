@@ -1,4 +1,4 @@
-const citysRussia = [
+const citiesRussia = [
     "Москва",
     "Санкт-Петербург",
     "Краснодар",
@@ -6,7 +6,7 @@ const citysRussia = [
     "Екатеринбург",
 ];
 
-const citysUsa = [
+const citiesUsa = [
     "Нью-Йорк",
     "Вашингтон",
     "Лос-Анджелес",
@@ -33,12 +33,19 @@ const numberPeopleInTheCirysUsa = {
 // Spread
 // Разворачивает массив, т.е. превращает в набор данных, извлекает из массива данные
 
-console.log(...citysRussia);
-console.log(...citysUsa);
+console.log(...citiesRussia);
+console.log(
+    citiesRussia[0],
+    citiesRussia[1],
+    citiesRussia[2],
+    citiesRussia[3],
+    citiesRussia[4]
+);
+console.log(...citiesUsa);
 
 // Конкотенация массивов + добавление новых значений в него
 
-const allCity = [...citysRussia, "Камызяк", ...citysUsa];
+const allCity = [...citiesRussia, "Камызяк", ...citiesUsa];
 console.log(allCity);
 
 // Работа с объектами
