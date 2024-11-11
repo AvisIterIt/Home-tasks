@@ -57,7 +57,7 @@ function sum(a, b, ...other) {
     return a + b + other.reduce((a, b) => a + b, 0);
 }
 const numbers = [1, 2, 3, 4, 5];
-console.log(sum(...numbers));
+// console.log(sum(...numbers));
 // Деструктуризация массива + rest собирает в новый массив оставшиеся данные
 const [a, b, ...other] = numbers;
 console.log(a, b, other);

@@ -49,7 +49,6 @@ button {
 
 .color-result {
     display: flex;
-    gap: 10px;
 }
 
 .color-result__item {

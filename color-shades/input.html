@@ -1,42 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="./style.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./style.css" />
-</head>
-
-<body>
-    <div class="color-shades">
-        <div class="color-shades__range">
-            <h2 class="color-shades__range-title">кол-во оттенков</h2>
-            <div class="color-shades__range-container">
-                <span>0</span><input class="color-shades__range-input" value="4" min="0" max="4"
-                    type="range" /><span>4</span>
+    <body>
+        <div class="color-shades">
+            <div class="color-shades__range">
+                <h2 class="color-shades__range-title">кол-во оттенков</h2>
+                <div class="color-shades__range-container">
+                    <span>0</span
+                    ><input
+                        class="color-shades__range-input"
+                        value="50"
+                        min="0"
+                        max="100"
+                        type="range"
+                    /><span>100</span>
+                </div>
             </div>
-
+            <div class="color-shades__color">
+                <h2 class="color-shades__color-title">начальный цвет</h2>
+                <input
+                    class="color-shades__color-input-first"
+                    value="#FFFFFF"
+                    type="color"
+                />
+            </div>
+            <div class="color-shades__color">
+                <h2 class="color-shades__color-title">конечный цвет</h2>
+                <input
+                    class="color-shades__color-input-last"
+                    value="#000000"
+                    type="color"
+                />
+            </div>
+            <div class="color-shades__challenge">
+                <button class="color-shades__challenge-button">
+                    Показать оттенки
+                </button>
+            </div>
         </div>
-        <div class="color-shades__color">
-            <h2 class="color-shades__color-title">начальный цвет</h2>
-            <input class="color-shades__color-input-first" value="#FFFFFF" type="color" />
-        </div>
-        <div class="color-shades__color">
-            <h2 class="color-shades__color-title">конечный цвет</h2>
-            <input class="color-shades__color-input-last" value="#000000" type="color" />
-        </div>
-        <div class="color-shades__challenge">
-            <button class="color-shades__challenge-button">Показать оттенки</button>
-        </div>
-    </div>
-    <div class="color-result">
-        <div class="color-result__item background-color-one"></div>
-        <div class="color-result__item background-color-two"></div>
-        <div class="color-result__item background-color-three"></div>
-        <div class="color-result__item background-color-four"></div>
-    </div>
-    <script src="./color-shades.js"></script>
-</body>
-
+        <div class="color-result"></div>
+        <script src="./color-shades.js"></script>
+    </body>
 </html>

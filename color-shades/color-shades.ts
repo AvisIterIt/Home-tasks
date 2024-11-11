@@ -5,7 +5,7 @@ const lastColor = document.querySelector(
     ".color-shades__color-input-last"
 ) as HTMLInputElement;
 
-const quantity = document.querySelector(
+const quantityInput = document.querySelector(
     ".color-shades__range-input"
 ) as HTMLInputElement;
 
@@ -27,7 +27,7 @@ const challengeButton = document.querySelector(
 ) as HTMLButtonElement;
 
 // Перевод из HEX в RGB
-function hexRgb(hex: string) {
+function hexToRgb(hex: string) {
     hex = hex.replace("#", "");
 
     let r = parseInt(hex.substring(0, 2), 16);
@@ -62,64 +62,27 @@ function getColorShades(
     return shades;
 }
 
-// Установка градиентов в HTML
-
-function challenge(result: number[][]) {
-    switch (result.length) {
-        case 4: {
-            colorItemOne.style.backgroundColor = `rgb(${result[0]})`;
-            colorItemTwo.style.backgroundColor = `rgb(${result[1]})`;
-            colorItemThree.style.backgroundColor = `rgb(${result[2]})`;
-            colorItemFour.style.backgroundColor = `rgb(${result[3]})`;
-            break;
-        }
-        case 3: {
-            colorItemOne.style.backgroundColor = `rgb(${result[0]})`;
-            colorItemTwo.style.backgroundColor = `rgb(${result[1]})`;
-            colorItemThree.style.backgroundColor = `rgb(${result[2]})`;
-            colorItemFour.style.backgroundColor = `rgb(255, 255, 255)`;
-            break;
-        }
-        case 2: {
-            colorItemOne.style.backgroundColor = `rgb(${result[0]})`;
-            colorItemTwo.style.backgroundColor = `rgb(${result[1]})`;
-            colorItemThree.style.backgroundColor = `rgb(255, 255, 255)`;
-            colorItemFour.style.backgroundColor = `rgb(255, 255, 255)`;
-            break;
-        }
-
-        case 1: {
-            colorItemOne.style.backgroundColor = `rgb(${result[0]})`;
-            colorItemTwo.style.backgroundColor = `rgb(255, 255, 255)`;
-            colorItemThree.style.backgroundColor = `rgb(255, 255, 255)`;
-            colorItemFour.style.backgroundColor = `rgb(255, 255, 255)`;
-            break;
-        }
-        case 0: {
-            colorItemOne.style.backgroundColor = `rgb(255, 255, 255)`;
-            colorItemTwo.style.backgroundColor = `rgb(255, 255, 255)`;
-            colorItemThree.style.backgroundColor = `rgb(255, 255, 255)`;
-            colorItemFour.style.backgroundColor = `rgb(255, 255, 255)`;
-            break;
-        }
-    }
-}
-
-// Сбор значений из input-ов и вызов функций
+const colorResult = document.querySelector(".color-result")!;
 
 challengeButton.addEventListener("click", () => {
+    colorResult.innerHTML = "";
+
+    const number = Number(quantityInput.value);
+
     const firstColorHex = firstColor.value;
     const lastColorHex = lastColor.value;
 
-    const startColorRgb = hexRgb(firstColorHex);
-    const endColorRgb = hexRgb(lastColorHex);
+    const startColorRgb = hexToRgb(firstColorHex);
+    const endColorRgb = hexToRgb(lastColorHex);
 
-    const result = getColorShades(
-        startColorRgb,
-        endColorRgb,
-        quantity.valueAsNumber
-    );
-    challenge(result);
+    const shades = getColorShades(startColorRgb, endColorRgb, number);
+
+    shades.forEach((shade) => {
+        const div = document.createElement("div");
+        div.style.backgroundColor = `rgb(${shade})`;
+        div.classList.add("color-result__item");
+        colorResult.appendChild(div);
+    });
 });
 
 //  0 0 0
