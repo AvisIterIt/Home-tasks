@@ -1,57 +1,57 @@
 <!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>toDo list</title>
-        <link rel="stylesheet" href="./style.css" />
-    </head>
 
-    <body>
-        <div class="todo-list">
-            <div class="todo-list__wrapper">
-                <h1 class="wrapper__title">ToDo list</h1>
-                <div class="wrapper__body">
-                    <div class="body__todo">
-                        <input
-                            class="todo__input"
-                            type="text"
-                            maxlength="30"
-                            autofocus
-                        />
-                        <button
-                            class="todo__button"
-                            style="background-color: green"
-                        >
-                            Добавить
-                        </button>
-                    </div>
-                    <div class="body__list">
-                        <h2 class="list__greetings">Список дел пока пуст</h2>
-                    </div>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>toDo list</title>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+    <div class="todo-list">
+        <div class="todo-list__wrapper">
+            <h1 class="wrapper__title">ToDo list</h1>
+            <div class="wrapper__body">
+                <div class="body__todo">
+                    <input class="todo__input" type="text" maxlength="30" autofocus />
+                    <button class="todo__button" style="background-color: green">
+                        Добавить
+                    </button>
+                </div>
+                <div class="body__list">
+                    <h2 class="list__placeholder">Список дел пока пуст</h2>
                 </div>
             </div>
         </div>
+    </div>
 
-        <template id="template">
-            <div class="list__item">
-                <h2 class="list__title"></h2>
-                <img class="list__done" src="./icon/check.svg" alt="check" />
-                <img
-                    class="list__done-green"
-                    src="./icon/check-green.svg"
-                    alt="check"
-                />
+    <template id="template">
+        <div class="template__list-item">
+            <h2 class="list-item__title"></h2>
+            <svg class="list-item__done" fill="currentColor" height="32px" version="1.1" viewBox="0 0 32 32"
+                width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g id="Guides__x26__Forms" />
+                <g id="Icons">
+                    <g>
+                        <polygon
+                            points="22.186,10.52 14.054,18.652 9.814,14.411 8.4,15.825 14.054,21.48 23.6,11.934   " />
+                    </g>
+                </g>
+            </svg>
 
-                <img
-                    class="list__delete"
-                    width="24px"
-                    height="24px"
-                    src="./icon/check-delete.png"
-                    alt="check"
-                />
-            </div>
-        </template>
-        <script src="./script.js"></script>
-    </body>
+            <svg class="list-item__delete" fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                xmlns="http://www.w3.org/2000/svg">
+                <polyline points="3 6 5 6 21 6" />
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                <line x1="10" x2="10" y1="11" y2="17" />
+                <line x1="14" x2="14" y1="11" y2="17" />
+            </svg>
+        </div>
+    </template>
+    <script src="./script.js"></script>
+</body>
+
 </html>

@@ -7,6 +7,11 @@ const colorItemTwo = document.querySelector(".background-color-two");
 const colorItemThree = document.querySelector(".background-color-three");
 const colorItemFour = document.querySelector(".background-color-four");
 const challengeButton = document.querySelector(".color-shades__challenge-button");
+const colorResult = document.querySelector(".color-result");
+const valueColor = document.querySelector(".color-shades__value-color");
+quantityInput.addEventListener("input", () => {
+    valueColor.innerHTML = `${quantityInput.value}`;
+});
 // Перевод из HEX в RGB
 function hexToRgb(hex) {
     hex = hex.replace("#", "");
@@ -29,7 +34,6 @@ function getColorShades(firstColor, lastColor, quantity) {
     }
     return shades;
 }
-const colorResult = document.querySelector(".color-result");
 challengeButton.addEventListener("click", () => {
     colorResult.innerHTML = "";
     const number = Number(quantityInput.value);

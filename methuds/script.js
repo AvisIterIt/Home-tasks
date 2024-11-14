@@ -50,7 +50,7 @@ const reverseElement = document.querySelector(".div__reverse");
 const reverseButton = reverseElement.querySelector(".button");
 // forEach
 // Применяет функцию к каждому элементу массива
-// arrName.forEach((elem, id, arr) => {
+// arrName.forEach((elem,index, arr) => {
 //     console.log(`Привет ${elem}! Ваш талон ${id}. Список людей: ${arr}`)
 // })
 const myForEach = (arr, callBack) => {
@@ -60,9 +60,9 @@ const myForEach = (arr, callBack) => {
 };
 // map
 // Принимает фун-ю возвращает новый массив
-const new2 = arrNumbers.map((elem, id, arr) => {
-    return elem * 2;
-});
+// const new2 = arrNumbers.map((elem, index, arr) => {
+//     return elem * 2;
+// });
 const myMap = (arr, callBack) => {
     const result = [];
     for (let i = 0; i < arr.length; i++) {
@@ -103,9 +103,9 @@ const myFilter = (arr, condition) => {
 // } else {
 //   console.log("В этой стране нет нашего филиала");
 // }
-const mySome = (arr, searchValue) => {
+const mySome = (arr, callBack) => {
     for (let i = 0; i < arr.length; i++) {
-        if (searchValue === arr[i]) {
+        if (callBack(arr[i], i, arr)) {
             return true;
         }
     }
@@ -135,6 +135,75 @@ const myFind = (arr, callBack) => {
 // }`;
 // console.log(result);
 const myFindIndex = (arr, callBack) => {
+    for (let i = 0; i < arr.length; i++) {
+        if (callBack(arr[i], i, arr)) {
+            return i;
+        }
+    }
+    return -1;
+};
+// lastIndexOf
+const myFindIndexOf = (arr, callBack) => {
+    for (let i = arr.length - 1; i > 0; i--) {
+        if (callBack(arr[i], i)) {
+            return i;
+        }
+    }
+    return -1;
+};
+//console.log(myFindIndexOf(arrNumbers, (num) => num === 2));
+// splice
+// изменяет массив, удаляя определённое количество элементов и/или добавляя новые элементы,
+//начиная с указанного индекса
+// возвращает вырезанные элементы
+// изменяет исходный массив
+// параметры (с какого index-а начинать; количество элементов, которые нужно вырезать; элементы, которые нужно добавить)
+// Добавление элементов происходит в место, где были вырезаны предыдущие элементы или в начало массива
+// console.log(arrNumbers);
+// const f = arrNumbers.splice(0, 0, 55);
+// console.log(f);
+// console.log(arrNumbers);
+const mySplice = (arr, start, quantity, ...items) => {
+    const removedElements = [];
+    const resultArray = [];
+    // Корректируем значение `start`, если оно отрицательное
+    start = start < 0 ? arr.length + start : start;
+    if (start > arr.length)
+        start = arr.length;
+    // Скопируем элементы до `start` в результат
+    for (let i = 0; i < start; i++) {
+        resultArray.push(arr[i]);
+    }
+    // Удалим `quantity` элементов, начиная с `start`, и сохраним их в `removedElements`
+    for (let i = start; i < start + quantity && i < arr.length; i++) {
+        removedElements.push(arr[i]);
+    }
+    // Добавим новые элементы в результат
+    for (let i = 0; i < items.length; i++) {
+        resultArray.push(items[i]);
+    }
+    // Добавим оставшиеся элементы массива после `start + quantity`
+    for (let i = start + quantity; i < arr.length; i++) {
+        resultArray.push(arr[i]);
+    }
+    // Перезаписываем исходный массив
+    arr.length = resultArray.length;
+    for (let i = 0; i < resultArray.length; i++) {
+        arr[i] = resultArray[i];
+    }
+    return removedElements;
+};
+// slice
+// Возвращает новый массив, копируя указанный диапазон элементов исходного массива
+const mySlice = (arr, start, end) => {
+    const newArrSplice = [];
+    for (let i = start; i < end; i++) {
+        newArrSplice.push(arr[i]);
+    }
+    return newArrSplice;
+};
+//console.log(mySlice(arrNumbers, 1, 3));
+const myLastIndexOf = (arr, callBack) => {
     for (let i = 0; i < arr.length; i++) {
         if (callBack(arr[i], i, arr)) {
             return i;
@@ -207,10 +276,11 @@ const myFill = (arr, constant, start, end) => {
 //arrNumbers.reverse();
 // console.log(`После ${newArr}`);
 const myReverse = (arr) => {
+    const reversedArr = [];
     for (let i = arr.length - 1; i >= 0; i--) {
-        arr.push(arr[i]);
+        reversedArr.push(arr[i]);
     }
-    return arr;
+    return reversedArr;
 };
 // challenge
 forEachButton.addEventListener("click", () => {
@@ -222,12 +292,13 @@ mapButton.addEventListener("click", () => {
     const newArray = myMap(arrNumbers, (elem, i) => {
         return elem * 2;
     });
+    console.log(newArray);
 });
 filterButton.addEventListener("click", () => {
-    myFilter(people, (user) => user.age <= 18);
+    console.log(myFilter(people, (user) => user.age <= 18));
 });
 someButton.addEventListener("click", () => {
-    mySome(countries, "Россия");
+    console.log(mySome(people, (user) => user.age <= 18));
 });
 findButton.addEventListener("click", () => {
     const foundUser = myFind(people, (user) => user.age === 20);
@@ -239,7 +310,7 @@ findButton.addEventListener("click", () => {
     }
 });
 findIndexButton.addEventListener("click", () => {
-    const index = myFindIndex(people, (elem, id, arr) => {
+    const index = myFindIndex(people, (elem, index, arr) => {
         return elem.name === "Кирилл";
     });
     if (index !== undefined) {
@@ -262,5 +333,5 @@ fillButton.addEventListener("click", () => {
     myFill(arrNumbers, 0, 0, 5);
 });
 reverseButton.addEventListener("click", () => {
-    myReverse(arrNumbers);
+    console.log(myReverse(arrNumbers));
 });

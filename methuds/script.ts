@@ -61,13 +61,13 @@ const reverseButton = reverseElement.querySelector(".button")!;
 // forEach
 
 // Применяет функцию к каждому элементу массива
-// arrName.forEach((elem, id, arr) => {
+// arrName.forEach((elem,index, arr) => {
 //     console.log(`Привет ${elem}! Ваш талон ${id}. Список людей: ${arr}`)
 // })
 
-const myForEach = (
-    arr: string[],
-    callBack: (elem: string, index: number) => void
+const myForEach = <T>(
+    arr: T[],
+    callBack: (elem: T, index: number) => void
 ): void => {
     for (let i = 0; i < arr.length; i++) {
         callBack(arr[i], i);
@@ -78,13 +78,13 @@ const myForEach = (
 
 // Принимает фун-ю возвращает новый массив
 
-const new2 = arrNumbers.map((elem, id, arr) => {
-    return elem * 2;
-});
+// const new2 = arrNumbers.map((elem, index, arr) => {
+//     return elem * 2;
+// });
 
-const myMap = (
-    arr: number[],
-    callBack: (elem: number, index: number) => number
+const myMap = <T>(
+    arr: T[],
+    callBack: (elem: T, index: number) => number
 ): number[] => {
     const result: number[] = [];
     for (let i = 0; i < arr.length; i++) {
@@ -109,11 +109,11 @@ const myMap = (
 //   console.log("Условие: старше 18 лет. Результат Filter");
 //   console.log(JSON.stringify(newPeople));
 
-const myFilter = (
-    arr: User[],
-    condition: (user: User, index: number) => boolean
-): User[] => {
-    const newPeople: User[] = [];
+const myFilter = <T>(
+    arr: T[],
+    condition: (user: T, index: number) => boolean
+): T[] => {
+    const newPeople: T[] = [];
 
     for (let i = 0; i < arr.length; i++) {
         if (condition(arr[i], i)) {
@@ -138,9 +138,12 @@ const myFilter = (
 //   console.log("В этой стране нет нашего филиала");
 // }
 
-const mySome = (arr: string[], searchValue: string): boolean => {
+const mySome = <T>(
+    arr: T[],
+    callBack: (elem: T, index: number, arr: T[]) => boolean
+): boolean => {
     for (let i = 0; i < arr.length; i++) {
-        if (searchValue === arr[i]) {
+        if (callBack(arr[i], i, arr)) {
             return true;
         }
     }
@@ -160,10 +163,10 @@ const user3 = { name: "C", age: 11 };
 // const firstName = people.find((people) => people.name === "Артем");
 // console.log(firstName);
 
-const myFind = (
-    arr: User[],
-    callBack: (elem: User, index: number, arr: User[]) => boolean
-): User | undefined => {
+const myFind = <T>(
+    arr: T[],
+    callBack: (elem: T, index: number, arr: T[]) => boolean
+): T | undefined => {
     for (let i = 0; i < arr.length; i++) {
         if (callBack(arr[i], i, arr)) {
             return arr[i];
@@ -182,9 +185,105 @@ const myFind = (
 // }`;
 // console.log(result);
 
-const myFindIndex = (
-    arr: User[],
-    callBack: (elem: User, index: number, arr: User[]) => boolean
+const myFindIndex = <T>(
+    arr: T[],
+    callBack: (elem: T, index: number, arr: T[]) => boolean
+): number => {
+    for (let i = 0; i < arr.length; i++) {
+        if (callBack(arr[i], i, arr)) {
+            return i;
+        }
+    }
+    return -1;
+};
+
+// lastIndexOf
+
+const myFindIndexOf = (
+    arr: number[],
+    callBack: (searchElement: number, fromIndex: number) => boolean
+): number => {
+    for (let i = arr.length - 1; i > 0; i--) {
+        if (callBack(arr[i], i)) {
+            return i;
+        }
+    }
+    return -1;
+};
+
+//console.log(myFindIndexOf(arrNumbers, (num) => num === 2));
+
+// splice
+// изменяет массив, удаляя определённое количество элементов и/или добавляя новые элементы,
+//начиная с указанного индекса
+// возвращает вырезанные элементы
+// изменяет исходный массив
+// параметры (с какого index-а начинать; количество элементов, которые нужно вырезать; элементы, которые нужно добавить)
+// Добавление элементов происходит в место, где были вырезаны предыдущие элементы или в начало массива
+// console.log(arrNumbers);
+// const f = arrNumbers.splice(0, 0, 55);
+// console.log(f);
+// console.log(arrNumbers);
+
+const mySplice = <T>(
+    arr: T[],
+    start: number,
+    quantity: number,
+    ...items: T[]
+) => {
+    const removedElements: T[] = [];
+    const resultArray: T[] = [];
+
+    // Корректируем значение `start`, если оно отрицательное
+    start = start < 0 ? arr.length + start : start;
+    if (start > arr.length) start = arr.length;
+
+    // Скопируем элементы до `start` в результат
+    for (let i = 0; i < start; i++) {
+        resultArray.push(arr[i]);
+    }
+
+    // Удалим `quantity` элементов, начиная с `start`, и сохраним их в `removedElements`
+    for (let i = start; i < start + quantity && i < arr.length; i++) {
+        removedElements.push(arr[i]);
+    }
+
+    // Добавим новые элементы в результат
+    for (let i = 0; i < items.length; i++) {
+        resultArray.push(items[i]);
+    }
+
+    // Добавим оставшиеся элементы массива после `start + quantity`
+    for (let i = start + quantity; i < arr.length; i++) {
+        resultArray.push(arr[i]);
+    }
+
+    // Перезаписываем исходный массив
+    arr.length = resultArray.length;
+    for (let i = 0; i < resultArray.length; i++) {
+        arr[i] = resultArray[i];
+    }
+
+    return removedElements;
+};
+
+// slice
+
+// Возвращает новый массив, копируя указанный диапазон элементов исходного массива
+
+const mySlice = <T>(arr: T[], start: number, end: number): T[] => {
+    const newArrSplice: T[] = [];
+    for (let i = start; i < end; i++) {
+        newArrSplice.push(arr[i]);
+    }
+    return newArrSplice;
+};
+
+//console.log(mySlice(arrNumbers, 1, 3));
+
+const myLastIndexOf = <T>(
+    arr: T[],
+    callBack: (elem: T, index: number, arr: T[]) => boolean
 ): number => {
     for (let i = 0; i < arr.length; i++) {
         if (callBack(arr[i], i, arr)) {
@@ -204,9 +303,9 @@ const myFindIndex = (
 //   console.log("У всех больше 3000");
 // }
 
-const myEvery = (
-    arr: User[],
-    isValid: (elem: User, index: number, arr: User[]) => boolean
+const myEvery = <T>(
+    arr: T[],
+    isValid: (elem: T, index: number, arr: T[]) => boolean
 ): boolean => {
     for (let i = 0; i < arr.length; i++) {
         if (!isValid(arr[i], i, arr)) {
@@ -229,7 +328,7 @@ const myEvery = (
 //   ` Список людей с количеством наличных по мере возрастания: ${names}`
 // );
 
-const mySort = (arr: User[], callBack: (a: User, b: User) => number): void => {
+const mySort = <T>(arr: T[], callBack: (a: T, b: T) => number): void => {
     for (let i = 0; i < arr.length - 1; i++) {
         for (let j = 0; j < arr.length - 1 - i; j++) {
             if (callBack(arr[j], arr[j + 1])) {
@@ -248,7 +347,7 @@ const mySort = (arr: User[], callBack: (a: User, b: User) => number): void => {
 // const newArr = arrNumbers.concat(arrNumbersTo);
 // console.log(newArr);
 
-const myConcat = (arr: number[], arrTo: number[]): number[] => {
+const myConcat = <T>(arr: T[], arrTo: T[]): T[] => {
     return [...arr, ...arrTo];
 };
 
@@ -260,12 +359,7 @@ const myConcat = (arr: number[], arrTo: number[]): number[] => {
 // const newArr = arrNumbers.fill(0, 0, 4);
 // console.log(`После ${newArr}`);
 
-const myFill = (
-    arr: number[],
-    constant: number,
-    start: number,
-    end: number
-): void => {
+const myFill = <T>(arr: T[], constant: T, start: number, end: number): void => {
     const validStart = Math.max(0, start);
     const validEnd = Math.min(arr.length, end);
     for (let i = validStart; i < validEnd - 1; i++) {
@@ -282,11 +376,12 @@ const myFill = (
 //arrNumbers.reverse();
 // console.log(`После ${newArr}`);
 
-const myReverse = (arr: number[]): number[] => {
+const myReverse = <T>(arr: T[]): T[] => {
+    const reversedArr: T[] = [];
     for (let i = arr.length - 1; i >= 0; i--) {
-        arr.push(arr[i]);
+        reversedArr.push(arr[i]);
     }
-    return arr;
+    return reversedArr;
 };
 
 // challenge
@@ -301,12 +396,13 @@ mapButton.addEventListener("click", () => {
     const newArray = myMap(arrNumbers, (elem: number, i: number) => {
         return elem * 2;
     });
+    console.log(newArray);
 });
 filterButton.addEventListener("click", () => {
-    myFilter(people, (user: User) => user.age <= 18);
+    console.log(myFilter(people, (user: User) => user.age <= 18));
 });
 someButton.addEventListener("click", () => {
-    mySome(countries, "Россия");
+    console.log(mySome(people, (user: User) => user.age <= 18));
 });
 findButton.addEventListener("click", () => {
     const foundUser = myFind(people, (user: User) => user.age === 20);
@@ -318,7 +414,7 @@ findButton.addEventListener("click", () => {
     }
 });
 findIndexButton.addEventListener("click", () => {
-    const index = myFindIndex(people, (elem, id, arr) => {
+    const index = myFindIndex(people, (elem, index, arr) => {
         return elem.name === "Кирилл";
     });
 
@@ -341,5 +437,5 @@ fillButton.addEventListener("click", () => {
     myFill(arrNumbers, 0, 0, 5);
 });
 reverseButton.addEventListener("click", () => {
-    myReverse(arrNumbers);
+    console.log(myReverse(arrNumbers));
 });

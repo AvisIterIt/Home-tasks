@@ -26,6 +26,16 @@ const challengeButton = document.querySelector(
     ".color-shades__challenge-button"
 ) as HTMLButtonElement;
 
+const colorResult = document.querySelector(".color-result")!;
+
+const valueColor = document.querySelector(
+    ".color-shades__value-color"
+) as HTMLDivElement;
+
+quantityInput.addEventListener("input", () => {
+    valueColor.innerHTML = `${quantityInput.value}`;
+});
+
 // Перевод из HEX в RGB
 function hexToRgb(hex: string) {
     hex = hex.replace("#", "");
@@ -61,8 +71,6 @@ function getColorShades(
 
     return shades;
 }
-
-const colorResult = document.querySelector(".color-result")!;
 
 challengeButton.addEventListener("click", () => {
     colorResult.innerHTML = "";
