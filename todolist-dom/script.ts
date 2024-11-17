@@ -13,14 +13,19 @@ type Todo = {
 
 const todos: Todo[] = [];
 
+function renderTodos() {
+    // ... переписать все туду
+    ensurePlaceholder();
+}
+
 function addTodo() {
-    if (input.value) {
-        const newTodo: Todo = { title: input.value, done: false };
-        todos.push(newTodo);
-        input.value = "";
-        ensurePlaceholder();
-        renderTodo();
-    }
+    if (!input.value) return;
+
+    const newTodo: Todo = { title: input.value, done: false };
+    todos.push(newTodo);
+    input.value = "";
+    ensurePlaceholder();
+    renderTodo();
 }
 
 function renderTodo() {
@@ -60,8 +65,7 @@ function cloneAndPrintElements(todo: Todo, index: number) {
 function onDeleteClick(cloneDeleteItem: HTMLElement, index: number) {
     cloneDeleteItem.addEventListener("click", () => {
         todos.splice(index, 1);
-        cloneDeleteItem.parentElement?.remove();
-        ensurePlaceholder();
+        renderTodos();
     });
 }
 
@@ -72,7 +76,7 @@ function onDoneClick(clone: HTMLElement, todo: Todo) {
 
     cloneDoneItem.addEventListener("click", () => {
         todo.done = !todo.done;
-        clone.classList.toggle("done", todo.done);
+        renderTodos();
     });
 }
 
@@ -84,15 +88,19 @@ input.addEventListener("keydown", (event) => {
     }
 });
 
-fetch("https://jsonplaceholder.typicode.com/todos/1")
-    .then((response) => response.json())
+const promise = fetch("https://jsonplaceholder.typicode.com/todos/1");
+
+promise.then((response) => {
+    console.log(response);
+    return response.json();
+})
     .then((json) => {
-        const newTodo: Todo = {
+        const newTodo = {
             title: json.title,
-            done: json.completed || false,
+            done: json.completed || false
         };
         todos.push(newTodo);
         renderTodo();
     });
 
-console.log(todos);
+
