@@ -14,11 +14,13 @@ type Todo = {
 const todos: Todo[] = [];
 
 function addTodo() {
-    const newTodo: Todo = { title: input.value, done: false };
-    todos.push(newTodo);
-    input.value = "";
-    ensurePlaceholder();
-    renderTodo();
+    if (input.value) {
+        const newTodo: Todo = { title: input.value, done: false };
+        todos.push(newTodo);
+        input.value = "";
+        ensurePlaceholder();
+        renderTodo();
+    }
 }
 
 function renderTodo() {
@@ -81,3 +83,16 @@ input.addEventListener("keydown", (event) => {
         addTodo();
     }
 });
+
+fetch("https://jsonplaceholder.typicode.com/todos/1")
+    .then((response) => response.json())
+    .then((json) => {
+        const newTodo: Todo = {
+            title: json.title,
+            done: json.completed || false,
+        };
+        todos.push(newTodo);
+        renderTodo();
+    });
+
+console.log(todos);

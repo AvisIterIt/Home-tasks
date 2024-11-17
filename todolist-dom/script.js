@@ -8,11 +8,13 @@ const doneItem = document.querySelector(".list-item__done");
 const deleteItem = document.querySelector(".list-item__delete");
 const todos = [];
 function addTodo() {
-    const newTodo = { title: input.value, done: false };
-    todos.push(newTodo);
-    input.value = "";
-    ensurePlaceholder();
-    renderTodo();
+    if (input.value) {
+        const newTodo = { title: input.value, done: false };
+        todos.push(newTodo);
+        input.value = "";
+        ensurePlaceholder();
+        renderTodo();
+    }
 }
 function renderTodo() {
     bodyList.innerHTML = "";
@@ -60,3 +62,14 @@ input.addEventListener("keydown", (event) => {
         addTodo();
     }
 });
+fetch("https://jsonplaceholder.typicode.com/todos/1")
+    .then((response) => response.json())
+    .then((json) => {
+    const newTodo = {
+        title: json.title,
+        done: json.completed || false,
+    };
+    todos.push(newTodo);
+    renderTodo();
+});
+console.log(todos);
