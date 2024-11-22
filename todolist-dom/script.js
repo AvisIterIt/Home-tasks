@@ -145,4 +145,3 @@ function deleteTodoApi(id) {
         }
     });
 }
-localStorageInput();

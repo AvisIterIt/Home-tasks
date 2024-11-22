@@ -153,5 +153,3 @@ async function deleteTodoApi(id: number) {
         console.log(error);
     }
 }
-
-localStorageInput();
