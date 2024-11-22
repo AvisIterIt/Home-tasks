@@ -1,0 +1,10 @@
+{
+    "scripts": {
+        "start": "concurrently \"tsc -w\" \"npm run server\"",
+        "server": "json-server -w db.json -p 3001"
+    },
+    "dependencies": {
+        "concurrently": "^9.1.0",
+        "json-server": "^1.0.0-beta.3"
+    }
+}

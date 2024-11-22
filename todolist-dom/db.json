@@ -1,0 +1,34 @@
+{
+  "todos": [
+    {
+      "id": "97dc",
+      "title": "- реализовать renderTodos ",
+      "done": true
+    },
+    {
+      "id": "b165",
+      "title": "- разобрать синтаксис async/await",
+      "done": true
+    },
+    {
+      "id": "1615",
+      "title": "- посмотреть библиотеку json-server",
+      "done": true
+    },
+    {
+      "id": "b4ea",
+      "title": "- реализовать класс Persone",
+      "done": true
+    },
+    {
+      "id": "c2b7",
+      "title": "- truthy/falsy",
+      "done": true
+    },
+    {
+      "id": "7f89",
+      "title": "123456",
+      "done": false
+    }
+  ]
+}

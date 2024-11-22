@@ -84,13 +84,13 @@ const myMap = (arr, callBack) => {
 //   console.log("Условие: старше 18 лет. Результат Filter");
 //   console.log(JSON.stringify(newPeople));
 const myFilter = (arr, condition) => {
-    const newPeople = [];
+    const newArr = [];
     for (let i = 0; i < arr.length; i++) {
         if (condition(arr[i], i)) {
-            newPeople.push(arr[i]);
+            newArr.push(arr[i]);
         }
     }
-    return newPeople;
+    return newArr;
 };
 // some
 // вернет значение true, если хотя бы один элемент совпадет с
@@ -276,12 +276,13 @@ const myFill = (arr, constant, start, end) => {
 //arrNumbers.reverse();
 // console.log(`После ${newArr}`);
 const myReverse = (arr) => {
-    const reversedArr = [];
     for (let i = arr.length - 1; i >= 0; i--) {
-        reversedArr.push(arr[i]);
+        arr.push(arr[i]);
+        arr.splice(i, 1);
     }
-    return reversedArr;
+    return arr;
 };
+console.log(myReverse(arrNumbers));
 // challenge
 forEachButton.addEventListener("click", () => {
     myForEach(arrName, (elem, index) => {

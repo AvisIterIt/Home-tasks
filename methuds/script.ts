@@ -82,11 +82,8 @@ const myForEach = <T>(
 //     return elem * 2;
 // });
 
-const myMap = <T>(
-    arr: T[],
-    callBack: (elem: T, index: number) => number
-): number[] => {
-    const result: number[] = [];
+const myMap = <T>(arr: T[], callBack: (elem: T, index: number) => T): T[] => {
+    const result: T[] = [];
     for (let i = 0; i < arr.length; i++) {
         result.push(callBack(arr[i], i));
     }
@@ -111,17 +108,17 @@ const myMap = <T>(
 
 const myFilter = <T>(
     arr: T[],
-    condition: (user: T, index: number) => boolean
+    condition: (elem: T, index: number) => boolean
 ): T[] => {
-    const newPeople: T[] = [];
+    const newArr: T[] = [];
 
     for (let i = 0; i < arr.length; i++) {
         if (condition(arr[i], i)) {
-            newPeople.push(arr[i]);
+            newArr.push(arr[i]);
         }
     }
 
-    return newPeople;
+    return newArr;
 };
 
 // some
@@ -377,12 +374,14 @@ const myFill = <T>(arr: T[], constant: T, start: number, end: number): void => {
 // console.log(`После ${newArr}`);
 
 const myReverse = <T>(arr: T[]): T[] => {
-    const reversedArr: T[] = [];
     for (let i = arr.length - 1; i >= 0; i--) {
-        reversedArr.push(arr[i]);
+        arr.push(arr[i]);
+        arr.splice(i, 1);
     }
-    return reversedArr;
+    return arr;
 };
+
+console.log(myReverse(arrNumbers));
 
 // challenge
 
