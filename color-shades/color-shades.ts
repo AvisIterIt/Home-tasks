@@ -116,33 +116,3 @@ challengeButton.addEventListener("click", () => {
 // Формула линейной интерполяции
 // C shades = C start + (C end - C start)*i) / quantity - 1
 //
-
-function compareArrays<T>(arr1: T[], arr2: T[]): boolean {
-    if (arr1 == arr2) return true;
-    if (arr1.length != arr2.length) return false;
-
-    for (let i = 0; i < arr1.length; i++) {
-        if (arr1[i] != arr2[i]) return false;
-    }
-
-    return true;
-}
-
-// function compareArrays<T>(arr1: T[], arr2: T[]): boolean {
-//     if (arr1 == arr2) {
-//         return true;
-//     } else if (arr1.length != arr2.length) {
-//         return false;
-//     } else {
-//         for (let i = 0; i < arr1.length; i++) {
-//             if (arr1[i] != arr2[i]) {
-//                 return false;
-//             }
-//         }
-//         return true;
-//     }
-// }
-
-const arr1 = [1, 2, 3];
-const arr2 = [1, 2, 3];
-console.log(compareArrays(arr1, arr1));

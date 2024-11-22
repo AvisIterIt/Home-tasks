@@ -269,11 +269,11 @@ const mySplice = <T>(
 // Возвращает новый массив, копируя указанный диапазон элементов исходного массива
 
 const mySlice = <T>(arr: T[], start: number, end: number): T[] => {
-    const newArr: T[] = [];
+    const newArrSplice: T[] = [];
     for (let i = start; i < end; i++) {
-        newArr.push(arr[i]);
+        newArrSplice.push(arr[i]);
     }
-    return newArr;
+    return newArrSplice;
 };
 
 //console.log(mySlice(arrNumbers, 1, 3));
