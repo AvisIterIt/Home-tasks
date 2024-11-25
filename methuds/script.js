@@ -58,11 +58,14 @@ const myForEach = (arr, callBack) => {
         callBack(arr[i], i);
     }
 };
+["a", "b", "c"].map((x) => x.length);
 // map
 // Принимает фун-ю возвращает новый массив
 // const new2 = arrNumbers.map((elem, index, arr) => {
 //     return elem * 2;
 // });
+myMap([1, 2, 3], (elem) => "@");
+myMap([1, 2, 3], (elem) => "@");
 const myMap = (arr, callBack) => {
     const result = [];
     for (let i = 0; i < arr.length; i++) {

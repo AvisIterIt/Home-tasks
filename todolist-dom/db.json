@@ -1,11 +1,6 @@
 {
   "todos": [
     {
-      "id": "97dc",
-      "title": "- реализовать renderTodos ",
-      "done": true
-    },
-    {
       "id": "b165",
       "title": "- разобрать синтаксис async/await",
       "done": true
@@ -16,18 +11,53 @@
       "done": true
     },
     {
-      "id": "b4ea",
-      "title": "- реализовать класс Persone",
-      "done": true
+      "id": "0386",
+      "title": "qwdqwd123",
+      "done": false
     },
     {
-      "id": "c2b7",
-      "title": "- truthy/falsy",
-      "done": true
+      "id": "4e42",
+      "title": "123",
+      "done": false
     },
     {
-      "id": "7f89",
-      "title": "123456",
+      "id": "6eba",
+      "title": "ewf",
+      "done": false
+    },
+    {
+      "id": "3dc7",
+      "title": "123",
+      "done": false
+    },
+    {
+      "id": "4968",
+      "title": "qwd",
+      "done": false
+    },
+    {
+      "id": "1b0c",
+      "title": "wqdqwdqwdqwdqwd",
+      "done": false
+    },
+    {
+      "id": "ca21",
+      "title": "wqdqwdqwdqwdqwdqwdwd",
+      "done": false
+    },
+    {
+      "id": "3347",
+      "title": "qwdqwd",
+      "done": false
+    },
+    {
+      "id": "a1ea",
+      "title": "wd123",
+      "done": false
+    },
+    {
+      "id": "d941",
+      "title": "zzz",
       "done": false
     }
   ]

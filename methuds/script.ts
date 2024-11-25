@@ -74,6 +74,8 @@ const myForEach = <T>(
     }
 };
 
+["a", "b", "c"].map((x) => x.length);
+
 // map
 
 // Принимает фун-ю возвращает новый массив
@@ -82,11 +84,19 @@ const myForEach = <T>(
 //     return elem * 2;
 // });
 
-const myMap = <T>(arr: T[], callBack: (elem: T, index: number) => T): T[] => {
-    const result: T[] = [];
+myMap<number, string>([1, 2, 3], (elem) => "@");
+myMap([1, 2, 3], (elem) => "@");
+
+const myMap = <T = number, K = string>(
+    arr: T[],
+    callBack: (elem: T, index: number) => K
+): K[] => {
+    const result: K[] = [];
+
     for (let i = 0; i < arr.length; i++) {
         result.push(callBack(arr[i], i));
     }
+
     return result;
 };
 // forEach

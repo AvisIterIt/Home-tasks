@@ -120,6 +120,8 @@ async function postTodoApi() {
             }),
         });
         const data = await res.json();
+        console.log(data);
+
         todos.push(data);
         renderTodo();
     } catch (error) {

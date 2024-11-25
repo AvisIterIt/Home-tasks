@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 const button = document.querySelector(".todo__button");
 const input = document.querySelector(".todo__input");
 const template = document.querySelector("#template");
@@ -18,7 +9,7 @@ const deleteItem = document.querySelector(".list-item__delete");
 let todos = [];
 function localStorageInput() {
     const storageText = localStorage.getItem("inputText");
-    if (storageText === null || storageText === void 0 ? void 0 : storageText.length) {
+    if (storageText?.length) {
         input.value = storageText;
     }
     input.addEventListener("input", (e) => {
@@ -78,70 +69,63 @@ input.addEventListener("keydown", (event) => {
     }
 });
 const newUrl = "http://localhost:3001/todos";
-function displayTaskListApi() {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const response = yield fetch(newUrl);
-            const data = yield response.json();
-            todos.push(...data);
-            renderTodo();
-        }
-        catch (error) {
-            console.error("Ошибка:", error);
-        }
-    });
+async function displayTaskListApi() {
+    try {
+        const response = await fetch(newUrl);
+        const data = await response.json();
+        todos.push(...data);
+        renderTodo();
+    }
+    catch (error) {
+        console.error("Ошибка:", error);
+    }
 }
 displayTaskListApi();
-function postTodoApi() {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const res = yield fetch(newUrl, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    title: input.value,
-                    done: false,
-                }),
-            });
-            const data = yield res.json();
-            todos.push(data);
-            renderTodo();
-        }
-        catch (error) {
-            console.log(error);
-        }
-    });
+async function postTodoApi() {
+    try {
+        const res = await fetch(newUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                title: input.value,
+                done: false,
+            }),
+        });
+        const data = await res.json();
+        console.log(data);
+        todos.push(data);
+        renderTodo();
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
-function toggleDoneApi(id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const todo = todos.find((todo) => todo.id === id);
-        if (!todo)
-            return;
-        try {
-            yield fetch(`${newUrl}/${id}`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ done: !todo.done }),
-            });
-            onDoneClick(todo);
-        }
-        catch (error) {
-            console.log(error);
-        }
-    });
+async function toggleDoneApi(id) {
+    const todo = todos.find((todo) => todo.id === id);
+    if (!todo)
+        return;
+    try {
+        await fetch(`${newUrl}/${id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ done: !todo.done }),
+        });
+        onDoneClick(todo);
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
-function deleteTodoApi(id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            yield fetch(`${newUrl}/${id}`, {
-                method: "DELETE",
-            });
-            onDeleteClick(id);
-        }
-        catch (error) {
-            console.log(error);
-        }
-    });
+async function deleteTodoApi(id) {
+    try {
+        await fetch(`${newUrl}/${id}`, {
+            method: "DELETE",
+        });
+        onDeleteClick(id);
+    }
+    catch (error) {
+        console.log(error);
+    }
 }

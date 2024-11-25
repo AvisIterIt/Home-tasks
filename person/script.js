@@ -18,5 +18,5 @@ const petr = new Person({ name: "Petr", age: 25 });
 console.log(ivan.getConnections()); //[]
 console.log(petr.getConnections()); //[]
 ivan.addConnection(petr);
-console.log(ivan.getConnections()); // [Petr]
-console.log(petr.getConnections()); // [Ivan]
+console.log(ivan); // [Petr]
+console.log(petr); // [Ivan]
