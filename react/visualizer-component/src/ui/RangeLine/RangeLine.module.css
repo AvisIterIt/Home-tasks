@@ -1,0 +1,40 @@
+.range {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+.rangeContainer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.inputLine {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: background 0.3s;
+}
+
+.inputLine:hover {
+    background: #ccc;
+}
+
+.inputLine::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #f4a261;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.inputLine::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}

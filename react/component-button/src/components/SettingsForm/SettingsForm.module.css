@@ -1,0 +1,25 @@
+.container {
+    position: fixed;
+    left: 0;
+    width: 450px;
+    height: 100%;
+    overflow: auto;
+    transform: translate(-450px);
+    transition: transform 1s ease;
+    z-index: 1000;
+    font-size: 14px;
+}
+
+.container_open {
+    transform: translate(0);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 450px;
+    min-height: 100%;
+    padding: 30px 20px;
+    background-color: #ffffff;
+}

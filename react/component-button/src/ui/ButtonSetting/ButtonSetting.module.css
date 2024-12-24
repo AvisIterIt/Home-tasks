@@ -1,0 +1,22 @@
+.container,
+.container_open {
+    position: fixed;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    z-index: 1000;
+}
+.container {
+    background-color: #ffcb77;
+    transition: transform 1s ease;
+}
+
+.container:hover .icon {
+    transform: scale(1.2);
+    transition: transform 0.5s;
+}
+
+.container_open {
+    background-color: #f4a261;
+    transform: translate(450px);
+}
