@@ -1,0 +1,32 @@
+.nav {
+    display: flex;
+    padding: 19px 0;
+    justify-content: center;
+    border-bottom: 1px solid #f4a261;
+}
+
+.ul {
+    display: flex;
+    list-style-type: none;
+    gap: 20px;
+    font-size: 20px;
+}
+
+.li {
+    font-size: 20px;
+}
+
+.a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.a:hover {
+    cursor: pointer;
+    color: #f4a261;
+}
+
+.text {
+    font-size: 20px;
+    color: #fff;
+}

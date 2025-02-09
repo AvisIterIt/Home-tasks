@@ -26,6 +26,7 @@ export const buttonDefaultStyle = {
         rounding: 8,
         color: "#000",
         backgroundColor: "#fff",
+        text: "Кнопка 1",
     },
     "Кнопка 2": {
         fontSize: 18,
@@ -34,6 +35,7 @@ export const buttonDefaultStyle = {
         rounding: 8,
         color: "#000",
         backgroundColor: "#fff",
+        text: "Кнопка 2",
     },
     "Кнопка 3": {
         fontSize: 18,
@@ -42,6 +44,7 @@ export const buttonDefaultStyle = {
         rounding: 8,
         color: "#000",
         backgroundColor: "#fff",
+        text: "Кнопка 3",
     },
     "Кнопка 4": {
         fontSize: 18,
@@ -50,5 +53,15 @@ export const buttonDefaultStyle = {
         rounding: 8,
         color: "#000",
         backgroundColor: "#fff",
+        text: "Кнопка 4",
     },
+};
+
+export const EmployeeCardInfo = {
+    id: crypto.randomUUID(),
+    img: "https://cdn1.flamp.ru/3da8869a72905d14ea50cf47f6610935.jpg",
+    name: "Оля",
+    age: 25,
+    address: " Пензенская область, город Ступино, шоссе Ладыгина, 63",
+    phone: "89675467632",
 };

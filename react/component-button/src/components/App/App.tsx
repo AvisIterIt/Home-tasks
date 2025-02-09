@@ -1,55 +1,34 @@
-import { useState } from "react";
-import styles from "./App.module.css";
-import { SettingForm } from "../SettingsForm/SettingsForm";
-import { buttonDefaultStyle } from "../defaultStyle";
-
-type buttonType = {
-    fontSize: number;
-    paddingX: number;
-    paddingY: number;
-    rounding: number;
-    color: string;
-    backgroundColor: string;
-};
+import { Route, Routes } from "react-router-dom";
+import { ButtonsSettings } from "../../page/ButtonSettings/ButtonsSettings";
+import { Nav } from "./../Nav/Nav";
+import { Main } from "../../page/Main/Main";
+import { Counter } from "../../page/Counter/Counter";
+import { EmployeeCard } from "../../page/EmployeeCard/EmployeeCard";
+import { EmployeeCardInfo } from "../defaultData";
+import { ControlledInput } from "../../page/ControlledInput/ControlledInput";
+import { ProgressBar } from "../../page/ProgressBar/ProgressBar";
 
 export function App() {
-    const [buttonStyles, setButtonStyles] =
-        useState<Record<string, buttonType>>(buttonDefaultStyle);
-
-    const updateButtonStyle = (button: string, newStyles: any) => {
-        setButtonStyles((prev) => ({
-            ...prev,
-            [button]: {
-                ...prev[button],
-                ...newStyles,
-            },
-        }));
-    };
-
     return (
         <>
-            <SettingForm
-                buttonStyles={buttonStyles}
-                updateButtonStyle={updateButtonStyle}
-            />
-            <div className={styles.container}>
-                {Object.keys(buttonStyles).map((buttonName) => (
-                    <button
-                        key={buttonName}
-                        className={styles.button}
-                        style={{
-                            fontSize: `${buttonStyles[buttonName].fontSize}px`,
-                            color: buttonStyles[buttonName].color,
-                            backgroundColor:
-                                buttonStyles[buttonName].backgroundColor,
-                            padding: `${buttonStyles[buttonName].paddingY}px ${buttonStyles[buttonName].paddingX}px`,
-                            borderRadius: buttonStyles[buttonName].rounding,
-                        }}
-                    >
-                        {buttonName}
-                    </button>
-                ))}
-            </div>
+            <Nav />
+            <Routes>
+                <Route path="/" element={<Main />} />
+                <Route path="/buttonsSettings" element={<ButtonsSettings />} />
+                <Route
+                    path="/counter"
+                    element={<Counter maxValue={10} minValue={0} />}
+                />
+                <Route
+                    path="/employeeCard"
+                    element={<EmployeeCard employee={EmployeeCardInfo} />}
+                />
+                <Route path="/controlledInput" element={<ControlledInput />} />
+                <Route
+                    path="/progressBar"
+                    element={<ProgressBar max={100} value={40} />}
+                />
+            </Routes>
         </>
     );
 }

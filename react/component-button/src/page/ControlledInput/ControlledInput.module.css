@@ -1,0 +1,46 @@
+.header {
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+.containerInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    gap: 20px;
+}
+
+.input {
+    background-color: #fff;
+    cursor: pointer;
+    width: 200px;
+    padding: 5px 10px;
+    font-size: 20px;
+    border-radius: 8px;
+}
+
+.btn {
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 8px;
+    font-size: 20px;
+}
+
+.containerTable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    gap: 20px;
+    color: #fff;
+    font-size: 15px;
+}
+
+tr,
+th,
+td {
+    border: 1px solid #fff;
+    padding: 20px;
+}

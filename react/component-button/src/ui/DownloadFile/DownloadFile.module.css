@@ -1,0 +1,16 @@
+.downloadFile_container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+.img {
+    max-width: 100px;
+    max-height: 50px;
+    object-fit: contain;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

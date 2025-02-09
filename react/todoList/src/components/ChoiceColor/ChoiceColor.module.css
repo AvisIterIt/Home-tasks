@@ -1,0 +1,15 @@
+.ChoiceColorContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.ChoiceColorText {
+    flex-grow: 0;
+}
+
+.ChoiceColorInput {
+    width: 25px;
+    height: 28px;
+}

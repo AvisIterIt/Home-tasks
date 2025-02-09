@@ -1,0 +1,14 @@
+.textarea {
+    padding: 5px;
+    font-size: 20px;
+    resize: none;
+    width: 100%;
+}
+
+.textarea:focus {
+    outline: none;
+}
+
+.textarea::placeholder {
+    font-size: 20px;
+}

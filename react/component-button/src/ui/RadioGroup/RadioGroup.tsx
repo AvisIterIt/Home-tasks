@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import styles from "./RadioGroup.module.css";
-import { OptionType } from "../../components/defaultStyle";
+import { OptionType } from "../../components/defaultData";
 
 export type RadioGroupProps = {
     options: OptionType[];

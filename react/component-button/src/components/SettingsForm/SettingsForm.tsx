@@ -4,17 +4,32 @@ import styles from "./SettingsForm.module.css";
 import clsx from "clsx";
 import { Range } from "../../ui/Range/Range";
 import { RadioGroup } from "../../ui/RadioGroup/RadioGroup";
-import { backgroundColorOptions, button, colorOptions } from "../defaultStyle";
+import { backgroundColorOptions, button, colorOptions } from "../defaultData";
 import { Dropdown } from "../../ui/DropDown/DropDown";
+import { Textarea } from "../../ui/Textarea/Textarea";
+import { DownloadFile } from "../../ui/DownloadFile/DownloadFile";
+import { ReflectionStyles } from "../../page/ReflectionStyles/ReflectionStyles";
 
 type SettingFormProps = {
     buttonStyles: any;
     updateButtonStyle: (button: string, newStyles: any) => void;
+    setPreImage: React.Dispatch<React.SetStateAction<string>>;
+    setPostImage: React.Dispatch<React.SetStateAction<string>>;
+    preImage: string;
+    postImage: string;
+    handleFileChange: (
+        setImage: React.Dispatch<React.SetStateAction<string>>
+    ) => (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const SettingForm: React.FC<SettingFormProps> = ({
     buttonStyles,
     updateButtonStyle,
+    preImage,
+    postImage,
+    setPreImage,
+    setPostImage,
+    handleFileChange,
 }) => {
     const [isOpenMenu, setIsOpenMenu] = useState(false);
 
@@ -50,6 +65,9 @@ export const SettingForm: React.FC<SettingFormProps> = ({
 
     const handleBackgroundColorChange = (value: string) => {
         updateButtonStyle(selectedButton, { backgroundColor: value });
+    };
+    const handleTextChange = (value: string) => {
+        updateButtonStyle(selectedButton, { text: value });
     };
 
     return (
@@ -112,6 +130,26 @@ export const SettingForm: React.FC<SettingFormProps> = ({
                         onChange={(option) =>
                             handleBackgroundColorChange(option.value)
                         }
+                    />
+                    <Textarea
+                        title="Текст кнопки"
+                        setValue={handleTextChange}
+                        value={buttonStyles[selectedButton].text}
+                    />
+                    <DownloadFile
+                        header="Иконка перед текстом"
+                        image={preImage}
+                        onChange={handleFileChange(setPreImage)}
+                    />
+                    <DownloadFile
+                        header="Иконка после текста"
+                        image={postImage}
+                        onChange={handleFileChange(setPostImage)}
+                    />
+                    <ReflectionStyles
+                        header="Копирование стилей кнопки"
+                        buttonStyles={buttonStyles}
+                        selectedButton={selectedButton}
                     />
                 </form>
             </aside>
